@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaEllipsisV, FaInfoCircle } from "react-icons/fa";
-import { Button, Form } from "../../../common";
+import { Button, Form, Tooltip } from "../../../common";
 import { WelcomeXForm } from "./WelcomeXForm";
 import { WelcomeXWrapper, WelcomeXHeader, WelcomeXMain } from "./styles";
 
@@ -25,9 +25,16 @@ export const WelcomeX = () => {
         <motion.div animate={{ y: ["-50px", "0px"] }} initial={true}>
           <h3>
             Welcome Stranger{" "}
-            <span>
+            <Tooltip
+              content={
+                <div style={{ width: "100px", textAlign:"center" }}>
+                  Replace this name with a prefered name by clicking options on
+                  the top right of this page
+                </div>
+              }
+            >
               <FaInfoCircle />
-            </span>
+            </Tooltip>
           </h3>
           <Form<WelcomeXFormType>
             legend="Select a workspace"

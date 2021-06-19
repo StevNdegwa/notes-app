@@ -7,3 +7,4 @@ export * from "./Switch";
 export * from "./TextInput";
 export * from "./Select";
 export * from "./Form";
+export * from "./Tooltip";

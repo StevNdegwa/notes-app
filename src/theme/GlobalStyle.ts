@@ -32,6 +32,9 @@ export const GlobalStyle = createGlobalStyle`
   button {
     color: ${textColor_1};
   }
+  a{
+    text-decoration:none;
+  }
   div#root{
     height: 100%;
   }

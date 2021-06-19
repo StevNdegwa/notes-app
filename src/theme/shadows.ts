@@ -1,7 +1,9 @@
 export const shadows = {
-    0: "none",
-    1: "0px 5px 10px rgba(0, 0, 0, 0.12)",
-    2: "0px 8px 30px rgba(0, 0, 0, 0.24)",
+    none: "none",
+    sm: "0px 0px 2px hsla(212, 25%, 75%, 1)",
+    md: "0px 0px 8px hsla(212, 25%, 75%, 1)",
+    lg: "0px 0px 12px hsla(212, 25%, 75%, 1)",
+    xl: "0px 0px 20px hsla(212, 25%, 75%, 1)"
 };
 
 export type Shadows = typeof shadows;
