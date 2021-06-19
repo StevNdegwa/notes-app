@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaEllipsisV, FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 import { Button, Form, Tooltip } from "../../../common";
 import { WelcomeXForm } from "./WelcomeXForm";
 import { WelcomeXWrapper, WelcomeXHeader, WelcomeXMain } from "./styles";
+import { AppOptions } from "./AppOptions";
 
 export type WelcomeXFormType = {
   workspace: string;
 };
 
 export const WelcomeX = () => {
+  
   const handleSubmit = (data: WelcomeXFormType) => {
     console.log(data);
   };
@@ -17,9 +19,7 @@ export const WelcomeX = () => {
   return (
     <WelcomeXWrapper>
       <WelcomeXHeader>
-        <Button transparent>
-          <FaEllipsisV />
-        </Button>
+        <AppOptions/>
       </WelcomeXHeader>
       <WelcomeXMain>
         <motion.div animate={{ y: ["-50px", "0px"] }} initial={true}>
@@ -27,7 +27,7 @@ export const WelcomeX = () => {
             Welcome Stranger{" "}
             <Tooltip
               content={
-                <div style={{ width: "100px", textAlign:"center" }}>
+                <div style={{ width: "100px", textAlign: "center" }}>
                   Replace this name with a prefered name by clicking options on
                   the top right of this page
                 </div>

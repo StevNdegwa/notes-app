@@ -9,6 +9,7 @@ height:100%
 export const WelcomeXHeader = styled.header`
 text-align:right;
 padding:0.2rem;
+position:relative;
 `;
 
 export const WelcomeXMain = styled.main`
