@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef, memo, useCallback, useState } from "react";
+import { ChangeEventHandler, forwardRef, memo, useState } from "react";
 import { IntrinsicElementsKeys } from "styled-components";
 import { Input, Label, Wrapper } from "./styles";
 
@@ -8,7 +8,7 @@ export interface TextInputProps {
   placeholder: string;
   type: string;
   label: string;
-  onChange: (value: string) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   [key: string]: any;
 }
 
@@ -18,12 +18,6 @@ const TI = forwardRef<HTMLInputElement, Partial<TextInputProps>>(
     ref
   ) => {
     const [focused, setFocused] = useState<boolean>(false);
-    let handleChange = useCallback(
-      (event: ChangeEvent<HTMLInputElement>) => {
-        onChange && onChange(event.target.value);
-      },
-      [onChange]
-    );
 
     return (
       <Wrapper {...props} as={as} focused={focused}>
@@ -33,9 +27,9 @@ const TI = forwardRef<HTMLInputElement, Partial<TextInputProps>>(
           ref={ref}
           type={type || "text"}
           placeholder={placeholder}
-          onChange={handleChange}
-          onFocus={()=>setFocused(true)}
-          onBlur={()=>setFocused(false)}
+          onChange={onChange}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
         />
       </Wrapper>
     );

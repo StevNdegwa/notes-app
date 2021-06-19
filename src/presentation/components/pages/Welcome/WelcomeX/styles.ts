@@ -17,7 +17,7 @@ height:100%;
 &>div{
     padding:1rem;
     @media only screen and (min-width:1025px){
-        padding:8rem 16rem;
+        padding:2rem 8rem;
     }
     &>h3{
         font-size:1.3rem;

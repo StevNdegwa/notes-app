@@ -5,12 +5,18 @@ import { IconType } from "react-icons";
 export interface ButtonProps {
   icon?: IconType;
   transparent?: boolean;
+  primary?: boolean;
   [props: string]: any;
 }
 
 const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ icon: Icon, children, transparent, ...props }, ref) => (
-    <Wrapper ref={ref} {...props} transparent={!!transparent}>
+  ({ icon: Icon, children, transparent, primary, ...props }, ref) => (
+    <Wrapper
+      ref={ref}
+      transparent={!!transparent}
+      primary={!!primary}
+      {...props}
+    >
       <div className="label">{children}</div>
       {Icon && (
         <div className="icon">

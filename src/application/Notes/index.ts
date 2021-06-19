@@ -11,7 +11,7 @@ export interface NotesType {
 export class Notes {
     db: Database<NotesType>;
 
-    constructor() {
-        this.db = new Database<NotesType>("notes", 1, { key: "list", columns: ["++id", "note", "created"] })
+    constructor(name: string) {
+        this.db = new Database<NotesType>(`${name}_note`, { key: "notes", columns: ["++id", "text", "created"] }, 1)
     }
 }

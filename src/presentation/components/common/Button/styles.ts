@@ -3,7 +3,6 @@ import { Theme } from "../../../../theme";
 
 export const Wrapper = styled.button`
   display: inline-flex;
-  height:${({ theme }: { theme: Theme }) => theme.space(10)};;
   background-color:hsla(0, 0%, 85%, 1);
   font-weight:500;
   font-size:1rem;
@@ -30,10 +29,16 @@ export const Wrapper = styled.button`
     width: 30px;
     background-color:transparent;
   }
-  ${({ transparent, theme }: { transparent: boolean; theme: Theme }) => css`
-    ${transparent && css`
-    background-color:${theme.colors("transparent")};
+  ${({ transparent, theme, primary }: { theme: Theme; transparent: boolean; primary: boolean }) => css`
+    height: ${theme.space(10)};
     font-weight:600;
+    border-radius:${theme.borderRadius("sm")};
+    ${transparent && css`
+      background-color:${theme.colors("transparent")};
+    `}
+    ${primary && css`
+      background-color:${theme.colors("primary")};
+      color:${theme.colors("light")};
     `}
   `}
 `;

@@ -3,7 +3,7 @@ import Dexie from "dexie";
 export class Database<DataType> extends Dexie {
     dataset: Dexie.Table<DataType, number>;
 
-    constructor(name: string, version: number = 1, config: { key: string, columns: Array<string> }) {
+    constructor(name: string, config: { key: string, columns: Array<string> }, version: number = 1) {
         super(name);
 
         this.version(version).stores({

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Theme } from "../../../../theme";
 
 export const WelcomeAside = styled.aside`
 height:100%;
@@ -21,13 +22,10 @@ width:60%;
 `;
 
 export const MoveToLogin = styled.button`
-height:50px;
 font-size:2rem;
 position:fixed;
-z-index:1000;
 top:calc(50% - 50px);
 right:0px;
-background-color:transparent;
 border:none;
 cursor:pointer;
 &:hover{
@@ -37,12 +35,18 @@ cursor:pointer;
     outline:none;
 }
 &>div[role="note"]{
-    font-size:0.9rem;
+    font-size:1rem;
     padding:0 1rem;
+    font-weight:600;
 }
 @media only screen and (min-width:1024px){
     display:none;
 }
+${({ theme }: { theme: Theme; }) => css`
+z-index:${theme.zIndices("tooltip")};
+color:${theme.colors("light")};
+background-color:${theme.colors("transparent")};
+`}
 `;
 
 export const WelcomeWrapper = styled.div`

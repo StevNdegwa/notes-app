@@ -1,6 +1,7 @@
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import theme, { GlobalStyle } from "./theme";
+import theme from "./theme";
+import { GlobalStyle } from "./theme/GlobalStyle";
 import { Welcome, CreateWorkspace } from "./presentation/components/pages";
 
 export default function App() {

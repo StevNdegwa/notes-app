@@ -1,30 +1,17 @@
-import {
-    borderRadius,
-    BorderRadiusType,
-    colors,
-    ColorsType,
-    ColorsIndex,
-    fonts,
-    FontsType,
-    fontSizes,
-    FontSizesType,
-    fontWeights,
-    FontWeightsType,
-    lineHeights,
-    LineHeightsType,
-    space,
-    SpaceType,
-    shadows,
-    ShadowsType,
-    letterSpacings,
-    LetterSpacingType,
-    zIndices,
-    ZIndicesType
-} from "./";
+import { borderRadius, BorderRadiusType } from "./borderRadius";
+import { colors, ColorsType, ColorsIndex } from "./colors";
+import { fontSizes, FontSizesType } from "./fontSizes";
+import { fontWeights, FontWeightsType } from "./fontWeights";
+import { fonts, FontsType } from "./fonts";
+import { lineHeights, LineHeightsType } from "./lineHeights";
+import { shadows, ShadowsType } from "./shadows";
+import { space, SpaceType } from "./space";
+import { letterSpacings, LetterSpacingType } from "./letterSpacings";
+import { zIndices, ZIndicesType } from "./zIndices";
 
 const theme = {
-    colors: (type: ColorsType, index?: ColorsIndex) => {
-        return Array.isArray(colors[type]) ? colors[type][index || 5] : colors[type];
+    colors: (type: ColorsType, index?: ColorsIndex): string => {
+        return Array.isArray(colors[type]) ? colors[type][index || 3] : String(colors[type]) ;
     },
     fonts: (font: FontsType) => {
         return fonts[font];
@@ -54,18 +41,6 @@ const theme = {
         return zIndices[type];
     }
 }
-
-export * from "./GlobalStyle";
-export * from "./borderRadius";
-export * from "./colors";
-export * from "./fontSizes";
-export * from "./fontWeights";
-export * from "./fonts";
-export * from "./lineHeights";
-export * from "./shadows";
-export * from "./space";
-export * from "./letterSpacings";
-export * from "./zIndices";
 
 export type Theme = typeof theme;
 export default theme;

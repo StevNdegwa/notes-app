@@ -4,6 +4,7 @@ import { Wrapper } from "./styles";
 
 export interface ContainerProps {
   as: IntrinsicElementsKeys;
+  [key: string]: any;
 }
 
 export const Container: FC<Partial<ContainerProps>> = memo(
