@@ -1,23 +1,25 @@
 import { Database } from "../../infrastructure/db/classes";
 
 
-export interface WorkspaceType {
+export interface WorkspaceListType {
     id?: number;
     wsRef: string;
     name: string;
 }
 
+export type WorkspacesDataTypes = WorkspaceListType;
+
 export class Workspaces {
     static async createWorkspace(name: string) {
-        var list = new Database<WorkspaceType>("workspaces", { key: "list", columns: ["++id", "name", "wsRef"] }, 1).dataset;
+        const db = new Database<WorkspacesDataTypes>("workspaces", { list: "++id,name,wsRef" }, 1);
 
         let wsRef = name.replaceAll(" ", "_");
 
         return new Promise<string>((resolve, reject) => {
             try {
-                list.where("wsRef").equalsIgnoreCase(wsRef).toArray((workspaces: Array<WorkspaceType>) => {
+                db.dataset("list").where("wsRef").equalsIgnoreCase(wsRef).toArray((workspaces: Array<WorkspaceListType>) => {
                     if (workspaces.length === 0) {
-                        list.put({
+                        db.dataset("list").put({
                             name,
                             wsRef
                         })
@@ -34,6 +36,6 @@ export class Workspaces {
     }
 
     static async workSpacesList() {
-        return new Database<WorkspaceType>("workspaces", { key: "list", columns: ["++id", "name", "wsRef"] }, 1).dataset.toArray();
+        return new Database<WorkspacesDataTypes>("workspaces", { list: "++id,name,wsRef" }, 1).dataset("list").toArray();
     }
 }

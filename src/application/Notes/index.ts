@@ -1,4 +1,3 @@
-import { listenerCount } from "events";
 import { Database } from "../../infrastructure/db/classes";
 
 
@@ -8,10 +7,12 @@ export interface NotesType {
     created: Date;
 }
 
+export type NotesDataTypes = NotesType;
+
 export class Notes {
-    db: Database<NotesType>;
+    db: Database<NotesDataTypes>;
 
     constructor(name: string) {
-        this.db = new Database<NotesType>(`${name}_note`, { key: "notes", columns: ["++id", "text", "created"] }, 1)
+        this.db = new Database<NotesDataTypes>(`${name}_note`, { notes: "++id,text,created" }, 1);
     }
 }
