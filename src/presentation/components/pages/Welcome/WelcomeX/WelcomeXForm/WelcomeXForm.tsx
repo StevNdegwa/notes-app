@@ -4,19 +4,19 @@ import { useState } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import {
   Workspaces,
-  WorkspaceType,
+  WorkspaceListType,
 } from "../../../../../../application/Workspaces";
 import { Select, Button } from "../../../../common";
 
 export const WelcomeXForm = () => {
-  let [workspaces, setWorkSpaces] = useState<Array<WorkspaceType>>([]);
+  let [workspaces, setWorkSpaces] = useState<Array<WorkspaceListType>>([]);
   let [error, setError] = useState<Error | null>(null);
 
   const { register } = useFormContext();
 
   useEffect(() => {
     Workspaces.workSpacesList()
-      .then((list: Array<WorkspaceType>) => {
+      .then((list: Array<WorkspaceListType>) => {
         setWorkSpaces(list);
       })
       .catch((error: any) => {
@@ -27,7 +27,7 @@ export const WelcomeXForm = () => {
   return (
     <div className="select-a-workspace">
       {error && <p>{error.message}</p>}
-      <Select<WorkspaceType>
+      <Select<WorkspaceListType>
         name="workspace"
         placeholder="Select a workspace"
         options={workspaces}

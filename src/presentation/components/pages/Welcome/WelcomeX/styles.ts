@@ -22,7 +22,7 @@ height:100%;
     }
     &>h3{
         font-size:1.3rem;
-        line-height:${({ theme }: { theme: Theme }) => theme.lineHeights("3")};
+        line-height:${({ theme }: { theme: Theme }) => theme.lineHeights(3)};
     }
     &>form{
         & div.select-a-workspace{

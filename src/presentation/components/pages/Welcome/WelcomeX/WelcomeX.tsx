@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaInfoCircle } from "react-icons/fa";
@@ -10,8 +11,13 @@ export type WelcomeXFormType = {
   workspace: string;
 };
 
-export const WelcomeX = () => {
+export interface WelcomeXProps {
+  userName: string;
+}
+
+export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
   
+
   const handleSubmit = (data: WelcomeXFormType) => {
     console.log(data);
   };
@@ -19,12 +25,12 @@ export const WelcomeX = () => {
   return (
     <WelcomeXWrapper>
       <WelcomeXHeader>
-        <AppOptions/>
+        <AppOptions />
       </WelcomeXHeader>
       <WelcomeXMain>
         <motion.div animate={{ y: ["-50px", "0px"] }} initial={true}>
           <h3>
-            Welcome Stranger{" "}
+            Welcome {userName}{" "}
             <Tooltip
               content={
                 <div style={{ width: "100px", textAlign: "center" }}>

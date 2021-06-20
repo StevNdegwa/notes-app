@@ -5,5 +5,9 @@ export const FormWrapper = styled.form`
   margin: 20px 0;
   & > fieldset {
     border: none;
+    &>legend{
+      font-weight:400;
+      margin-bottom:1.5rem;
+    }
   }
 `;

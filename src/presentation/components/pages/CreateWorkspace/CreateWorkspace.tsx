@@ -1,18 +1,9 @@
 import { useCallback, useState } from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { FaChevronCircleLeft } from "react-icons/fa";
 import { FeedbackTypes } from "../../FeedbackTypes";
 import { Workspaces } from "../../../../application/Workspaces";
 import { CWForm } from "./CWForm";
 import { CWSStatus } from "./CWStatus";
-import { Button, Form } from "../../common";
-import {
-  CreateWorkspaceWrapper,
-  CreateWorkspaceHeader,
-  CreateWorkspaceMain,
-  CreateWorkspaceFooter,
-} from "./styles";
+import { Form, AppLayout } from "../../common";
 
 export const CreateWorkspace = () => {
   const [workspace, setWorkspace] = useState<{
@@ -41,32 +32,19 @@ export const CreateWorkspace = () => {
   );
 
   return (
-    <CreateWorkspaceWrapper>
-      <CreateWorkspaceHeader>
-        <Link to="/">
-          <Button transparent>
-            <FaChevronCircleLeft />
-          </Button>
-        </Link>
-      </CreateWorkspaceHeader>
-      <CreateWorkspaceMain
-        as={motion.main}
-        animate={{ marginTop: ["-20px", "0px"] }}
+    <AppLayout>
+      <Form<CreateWorkspaceFormType>
+        legend="Create a new workspace"
+        handler={handleCreateSpace}
       >
-        <Form<CreateWorkspaceFormType>
-          legend="Create a new workspace"
-          handler={handleCreateSpace}
-        >
-          <CWForm />
-        </Form>
-        <CWSStatus
-          status={workspace.status}
-          workSpaceName={workspace.name}
-          errorMessage={workspace.error?.message}
-        />
-      </CreateWorkspaceMain>
-      <CreateWorkspaceFooter></CreateWorkspaceFooter>
-    </CreateWorkspaceWrapper>
+        <CWForm />
+      </Form>
+      <CWSStatus
+        status={workspace.status}
+        workSpaceName={workspace.name}
+        errorMessage={workspace.error?.message}
+      />
+    </AppLayout>
   );
 };
 

@@ -11,7 +11,7 @@ right:5px;
 overflow:hidden;
 font-size:1rem;
 ${({ theme }: { theme: Theme }) => css`
-line-height:${theme.lineHeights("6")};
+line-height:${theme.lineHeights(6)};
 border-radius:${theme.borderRadius("md")};
 box-shadow:${theme.shadows("md")};
 z-index:${theme.zIndices("popover")}

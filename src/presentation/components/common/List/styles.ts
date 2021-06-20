@@ -13,8 +13,11 @@ padding:${theme.space(1)};
     padding:${theme.space(1)};
     border-radius:${theme.borderRadius("sm")};
     color:${theme.colors("primary")};
+    background-color:transparent;
+    transition:background-color 100ms;
     &:hover{
         background-color:${theme.colors("grey", 8)};
+        box-shadow:${theme.shadows("sm")}
     }
 }
 `};
