@@ -1,15 +1,13 @@
 import Dexie from "dexie";
 
-export class Database<DataType> extends Dexie {
-    dataset: Dexie.Table<DataType, number>;
-
-    constructor(name: string, config: { key: string, columns: Array<string> }, version: number = 1) {
+export class Database<TableDataTypes> extends Dexie {
+    constructor(name: string, stores: { [tableName: string]: string }, version: number = 1) {
         super(name);
 
-        this.version(version).stores({
-            [config.key]: config.columns.join(",")
-        })
+        this.version(version).stores(stores);
+    }
 
-        this.dataset = this.table(config.key)
+    dataset(name: string): Dexie.Table<TableDataTypes, number> {
+        return this.table(name);
     }
 }
