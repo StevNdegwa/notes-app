@@ -8,6 +8,7 @@ import {
   Welcome,
   CreateWorkspace,
   AppSettings,
+  Home,
 } from "./presentation/components/pages";
 
 import AppContext from "./AppContext";
@@ -38,6 +39,7 @@ export default function App() {
         <GlobalStyle />
         <Router>
           <Switch>
+            <Route path="/home" component={Home} />
             <Route path="/application-settings" component={AppSettings} />
             <Route path="/create-workspace" component={CreateWorkspace} />
             <Route path="/" component={Welcome} />

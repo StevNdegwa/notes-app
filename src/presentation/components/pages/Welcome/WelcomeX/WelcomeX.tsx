@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { Link } from "react-router-dom";
+import { FC, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaInfoCircle } from "react-icons/fa";
 import { Button, Form, Tooltip } from "../../../common";
@@ -16,11 +16,16 @@ export interface WelcomeXProps {
 }
 
 export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
-  
+  const [login, setLogin] = useState<boolean>(false);
 
   const handleSubmit = (data: WelcomeXFormType) => {
     console.log(data);
+    setLogin(true);
   };
+
+  if (login) {
+    return <Redirect to="/home" exact />;
+  }
 
   return (
     <WelcomeXWrapper>
