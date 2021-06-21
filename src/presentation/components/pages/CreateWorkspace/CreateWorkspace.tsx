@@ -2,8 +2,7 @@ import { useCallback, useState } from "react";
 import { FeedbackTypes } from "../../FeedbackTypes";
 import { Workspaces } from "../../../../application/Workspaces";
 import { CWForm } from "./CWForm";
-import { CWSStatus } from "./CWStatus";
-import { Form, AppLayout } from "../../common";
+import { Form, AppLayout, DbDataChangeAlert } from "../../common";
 
 export const CreateWorkspace = () => {
   const [workspace, setWorkspace] = useState<{
@@ -24,7 +23,7 @@ export const CreateWorkspace = () => {
         ).then((name: string) => {
           setWorkspace({ status: FeedbackTypes.SUCCESS, name, error: null });
         });
-      } catch (error) {
+      } catch (error: any) {
         setWorkspace({ status: FeedbackTypes.ERROR, error, name: "" });
       }
     },
@@ -39,9 +38,14 @@ export const CreateWorkspace = () => {
       >
         <CWForm />
       </Form>
-      <CWSStatus
+      <DbDataChangeAlert
         status={workspace.status}
-        workSpaceName={workspace.name}
+        successMessage={
+          <>
+            Created <span style={{ fontWeight: "bold" }}>{workspace.name}</span>
+            successfully
+          </>
+        }
         errorMessage={workspace.error?.message}
       />
     </AppLayout>

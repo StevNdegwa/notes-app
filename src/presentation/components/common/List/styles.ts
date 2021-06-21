@@ -16,7 +16,7 @@ padding:${theme.space(1)};
     background-color:transparent;
     transition:background-color 100ms;
     &:hover{
-        background-color:${theme.colors("grey", 8)};
+        background-color:${theme.colors("grey", 9)};
         box-shadow:${theme.shadows("sm")}
     }
 }

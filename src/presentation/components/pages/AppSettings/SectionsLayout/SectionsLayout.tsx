@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { Button } from "../../../common";
+import { loadVariants } from "./framer";
 import {
   SectionsLayoutWrapper,
   SectionsLayoutHeader,
@@ -22,7 +23,9 @@ export const SectionsLayout: FC<SectionsLayoutProps> = ({
           Back to menu
         </Button>
       </SectionsLayoutHeader>
-      <SectionsLayoutMain>{children}</SectionsLayoutMain>
+      <SectionsLayoutMain variants={loadVariants} animate="show" initial={true}>
+        {children}
+      </SectionsLayoutMain>
     </SectionsLayoutWrapper>
   );
 };

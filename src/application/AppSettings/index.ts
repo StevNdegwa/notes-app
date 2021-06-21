@@ -26,7 +26,7 @@ export class AppSettings {
         const currentUserProfile = await this.db.dataset("userProfile").where("ref").equals("currentUser");
 
         return currentUserProfile.modify(newUserProfile).then((res) => {
-            console.log(res)
+            console.log(newUserProfile)
         });
     }
 }

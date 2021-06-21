@@ -21,7 +21,7 @@ export class Application {
         })
     }
 
-    async start() {
+    async load() {
         let appConfig: NotesAppConfig = JSON.parse(localStorage.getItem("NOTES_APP_CONFIG") || "{}"),
             appData = { ...defaultAppData };
 

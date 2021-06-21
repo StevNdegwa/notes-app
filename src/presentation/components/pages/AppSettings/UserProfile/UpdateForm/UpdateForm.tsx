@@ -18,7 +18,7 @@ export const UpdateForm = () => {
           placeholder="User name"
         />
       </div>
-      <div style={{ padding: "1rem", height: "50px" }}>
+      <div style={{ margin: "1rem", height: "50px" }}>
         <Button primary type="submit">
           Update
         </Button>

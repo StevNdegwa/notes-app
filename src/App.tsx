@@ -17,7 +17,7 @@ export default function App() {
     useState<IAppData>(defaultAppData);
 
   const loadApp = useCallback(async () => {
-    let appData = await new Application().start();
+    let appData = await new Application().load();
     if (appData) {
       setApplicationData(appData);
     }
@@ -28,7 +28,12 @@ export default function App() {
   }, [loadApp]);
 
   return (
-    <AppContext.Provider value={applicationData}>
+    <AppContext.Provider
+      value={{
+        appData: applicationData,
+        loadApp,
+      }}
+    >
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Router>

@@ -12,7 +12,7 @@ import { WelcomeX } from "./WelcomeX";
 
 export const Welcome = () => {
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
-  let appData = useContext(AppContext);
+  let application = useContext(AppContext);
 
   return (
     <WelcomeWrapper loginOpen={loginOpen}>
@@ -24,7 +24,7 @@ export const Welcome = () => {
         </MoveToLogin>
       </WelcomeAside>
       <WelcomeMainSection>
-        <WelcomeX userName={appData.userProfile.name} />
+        <WelcomeX userName={application.appData.userProfile.name} />
       </WelcomeMainSection>
     </WelcomeWrapper>
   );

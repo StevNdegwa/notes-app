@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import bg from "./images/honeycomb-bee.jpg";
+import bg from "./images/honeycomb-bee.png";
 import { WelcomeAdsWrapper } from "./styles";
 
 export const WelcomeAds = () => {

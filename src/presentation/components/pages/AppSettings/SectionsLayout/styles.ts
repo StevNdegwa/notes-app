@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 import { Theme } from "../../../../../theme";
 
 export const SectionsLayoutWrapper = styled.div`
@@ -16,7 +17,7 @@ ${({ theme }: { theme: Theme }) => css`
 `}
 `;
 
-export const SectionsLayoutMain = styled.main`
+export const SectionsLayoutMain = styled(motion.main)`
 width:100%;
 height:calc(100% - 40px);
 `;
