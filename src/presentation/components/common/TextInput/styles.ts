@@ -24,16 +24,17 @@ background-color:transparent;
 &:focus{
     outline: none;
 }
+
 ${({ theme }: { theme: Theme }) => css`  
-    height:${({ theme }: { theme: Theme }) => theme.space(8)};
+    height:${theme.space(8)};
 `}
 `;
 
 export const Label = styled.label`
-font-weight:600;
+font-weight:500;
 padding-left:0.3rem;
 ${({ theme }: { theme: Theme }) => css`  
-line-height:${({ theme }: { theme: Theme }) => theme.space(4)};
-color: ${({ theme }: { theme: Theme }) => theme.colors("grey", 6)};
+line-height:${theme.space(4)};
+color: ${theme.colors("grey", 7)};
 `}
 `

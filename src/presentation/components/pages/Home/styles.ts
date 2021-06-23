@@ -18,7 +18,24 @@ padding:0.5rem;
 
 export const HomeMain = styled.main`
 width:100%;
-display:flex;
-justify-content:center;
-align-items:center;
+`;
+
+export const HomeTop = styled.section`
+width:100%;
+height:80px;
+line-height:80px;
+${({ theme }: { theme: Theme; }) => css`
+font-size:${theme.fontSizes("lg")};
+font-weight:${theme.fontWeights("semibold")};
+padding-left:${theme.space(10)};
+border-bottom:1px inset ${theme.colors("primary", 9)};
+`}
+`;
+export const HomeMiddle = styled.section`
+width:100%;
+height:calc(100% - 120px);
+`;
+export const HomeBottom = styled.section`
+width:100%;
+height:40px;
 `;

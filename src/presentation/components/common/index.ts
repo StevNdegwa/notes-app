@@ -11,3 +11,6 @@ export * from "./Tooltip";
 export * from "./List";
 export * from "./AppLayout";
 export * from "./DbDataChangeAlert";
+export * from "./Logo";
+export * from "./Modal";
+export * from "./ConfirmationModal";

@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { useState } from "react";
 import { FaSignInAlt } from "react-icons/fa";
-import {
-  Workspaces,
-  WorkspaceListType,
-} from "../../../../../../application/Workspaces";
+import { Workspaces, WorkspaceListType } from "../../../../../../application";
 import { Select, Button } from "../../../../common";
 
-export const WelcomeXForm = () => {
-  let [workspaces, setWorkSpaces] = useState<Array<WorkspaceListType>>([]);
+export interface WelcomeXFormProps {
+  workspaces: WorkspaceListType[];
+  setWorkSpaces: (list: WorkspaceListType[]) => void;
+}
+
+export const WelcomeXForm: FC<WelcomeXFormProps> = ({
+  workspaces,
+  setWorkSpaces,
+}) => {
   let [error, setError] = useState<Error | null>(null);
 
   const { register } = useFormContext();
@@ -22,7 +25,9 @@ export const WelcomeXForm = () => {
       .catch((error: any) => {
         setError(new Error(error.message || "An error occured."));
       });
-  }, []);
+  }, [setWorkSpaces]);
+
+  let workSpace = useRef(register("workspace", { required: true }));
 
   return (
     <div className="select-a-workspace">
@@ -33,7 +38,8 @@ export const WelcomeXForm = () => {
         options={workspaces}
         labelKey="name"
         valueKey="wsRef"
-        ref={register("workspace").ref}
+        ref={workSpace.current.ref}
+        onChange={workSpace.current.onChange}
       />
       <Button type="submit" transparent>
         <FaSignInAlt />

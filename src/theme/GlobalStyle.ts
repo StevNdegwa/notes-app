@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100%;
+    position:relative;
   }
   input {
     color: ${textColor_1};

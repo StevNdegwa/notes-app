@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { FC } from "react";
 import { FaPowerOff } from "react-icons/fa";
-import { Button } from "../../../common";
+import { Button, Logo } from "../../../common";
 import {
   SidebarWrapper,
   SidebarFooter,
@@ -9,19 +8,20 @@ import {
   SidebarMain,
 } from "./styles";
 
-export const Sidebar = () => {
-  const [logOut, setLogout] = useState<boolean>(false);
+export interface SidebarProps {
+  openConfirmExitModal: () => void;
+}
 
-  if (logOut) {
-    return <Redirect to="/" />;
-  }
+export const Sidebar: FC<SidebarProps> = ({ openConfirmExitModal }) => {
 
   return (
     <SidebarWrapper>
-      <SidbarHeader></SidbarHeader>
+      <SidbarHeader>
+        <Logo />
+      </SidbarHeader>
       <SidebarMain></SidebarMain>
       <SidebarFooter>
-        <Button transparent onClick={() => setLogout(true)}>
+        <Button transparent onClick={openConfirmExitModal}>
           <FaPowerOff />
         </Button>
       </SidebarFooter>

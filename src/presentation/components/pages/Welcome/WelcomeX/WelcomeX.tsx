@@ -2,6 +2,11 @@ import { FC, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaInfoCircle } from "react-icons/fa";
+import { useSetRecoilState } from "recoil";
+import {
+  currentWorkSpaceAtom,
+  WorkspaceListType,
+} from "../../../../../application";
 import { Button, Form, Tooltip } from "../../../common";
 import { WelcomeXForm } from "./WelcomeXForm";
 import { WelcomeXWrapper, WelcomeXHeader, WelcomeXMain } from "./styles";
@@ -16,10 +21,13 @@ export interface WelcomeXProps {
 }
 
 export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
+  let [workspaces, setWorkSpaces] = useState<Array<WorkspaceListType>>([]);
   const [login, setLogin] = useState<boolean>(false);
+  const setCurrentWorkSpace = useSetRecoilState(currentWorkSpaceAtom);
 
   const handleSubmit = (data: WelcomeXFormType) => {
-    console.log(data);
+    setCurrentWorkSpace(workspaces.find((w) => w.wsRef === data.workspace)!);
+    console.log(data)
     setLogin(true);
   };
 
@@ -51,7 +59,10 @@ export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
             legend="Select a workspace"
             handler={handleSubmit}
           >
-            <WelcomeXForm />
+            <WelcomeXForm
+              workspaces={workspaces}
+              setWorkSpaces={setWorkSpaces}
+            />
           </Form>
           <Link to="/create-workspace">
             <Button className="create-new-workspace-btn" transparent>

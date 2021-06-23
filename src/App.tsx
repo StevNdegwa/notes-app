@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { RecoilRoot } from "recoil";
 import theme from "./theme";
 import { Application, IAppData, defaultAppData } from "./application";
 import { GlobalStyle } from "./theme/GlobalStyle";
@@ -37,14 +38,16 @@ export default function App() {
     >
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Router>
-          <Switch>
-            <Route path="/home" component={Home} />
-            <Route path="/application-settings" component={AppSettings} />
-            <Route path="/create-workspace" component={CreateWorkspace} />
-            <Route path="/" component={Welcome} />
-          </Switch>
-        </Router>
+        <RecoilRoot>
+          <Router>
+            <Switch>
+              <Route path="/home" component={Home} />
+              <Route path="/application-settings" component={AppSettings} />
+              <Route path="/create-workspace" component={CreateWorkspace} />
+              <Route path="/" component={Welcome} />
+            </Switch>
+          </Router>
+        </RecoilRoot>
       </ThemeProvider>
     </AppContext.Provider>
   );
