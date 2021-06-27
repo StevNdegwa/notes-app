@@ -14,3 +14,4 @@ export * from "./DbDataChangeAlert";
 export * from "./Logo";
 export * from "./Modal";
 export * from "./ConfirmationModal";
+export * from "./NewSelect";

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../../../theme";
+import { ThemeType } from "../../../../ui/theme";
 import { FeedbackTypes } from "../../FeedbackTypes";
 import { Container } from "../Container";
 
@@ -14,22 +14,22 @@ border:2px solid;
     height:100%;
     opacity:0.4;
 }
-${({ theme, paint, feedback }: { theme: Theme; paint?: string; feedback?: FeedbackTypes; }) => {
-    if (feedback) {
-        paint = (feedback === FeedbackTypes.ERROR) ? theme.colors("error") :
-            (feedback === FeedbackTypes.WARNING) ? theme.colors("warning") :
-            (feedback === FeedbackTypes.SUCCESS) ? theme.colors("success") : undefined;
-    }
+${({ theme, paint, feedback }: { theme: ThemeType; paint?: string; feedback?: FeedbackTypes; }) => {
+        if (feedback) {
+            paint = (feedback === FeedbackTypes.ERROR) ? theme.colors.error[5] :
+            (feedback === FeedbackTypes.WARNING) ? theme.colors.warning[5] :
+                (feedback === FeedbackTypes.SUCCESS) ? theme.colors.success[5] : undefined;
+        }
 
-    return !paint ?
-        css`
+        return !paint ?
+            css`
         border-color: hsla(0, 0%, 47%, 1);
         box-shadow: 0px 0px 2px hsla(0, 0%, 77%, 1);
         &>div.alert-bg{
             background-color: hsla(0, 0%, 77%, 1);
         }
         `:
-        css`
+            css`
         border-color: ${paint};
         box-shadow: 0px 0px 3px ${paint};
         &>div.alert-bg{
@@ -37,5 +37,5 @@ ${({ theme, paint, feedback }: { theme: Theme; paint?: string; feedback?: Feedba
         }
         `
     }
-}
+    }
 `;

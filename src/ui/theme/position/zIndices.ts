@@ -13,6 +13,3 @@ export const zIndices = {
     toast: 1700,
     tooltip: 1800,
 }
-
-export type ZIndices = typeof zIndices;
-export type ZIndicesType = keyof ZIndices;

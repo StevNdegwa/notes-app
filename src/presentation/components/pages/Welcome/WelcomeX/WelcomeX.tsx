@@ -13,7 +13,10 @@ import { WelcomeXWrapper, WelcomeXHeader, WelcomeXMain } from "./styles";
 import { AppOptions } from "./AppOptions";
 
 export type WelcomeXFormType = {
-  workspace: string;
+  workspace: {
+    name: string;
+    wsRef: string;
+  };
 };
 
 export interface WelcomeXProps {
@@ -22,12 +25,11 @@ export interface WelcomeXProps {
 
 export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
   let [workspaces, setWorkSpaces] = useState<Array<WorkspaceListType>>([]);
-  const [login, setLogin] = useState<boolean>(false);
   const setCurrentWorkSpace = useSetRecoilState(currentWorkSpaceAtom);
+  const [login, setLogin] = useState<boolean>(false);
 
   const handleSubmit = (data: WelcomeXFormType) => {
-    setCurrentWorkSpace(workspaces.find((w) => w.wsRef === data.workspace)!);
-    console.log(data)
+    setCurrentWorkSpace(data.workspace);
     setLogin(true);
   };
 

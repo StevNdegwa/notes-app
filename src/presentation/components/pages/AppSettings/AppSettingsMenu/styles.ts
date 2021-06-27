@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../../../../theme";
+import { ThemeType } from "../../../../../ui/theme";
 
 
 export const MenuWrapper = styled.div`
@@ -16,12 +16,12 @@ cursor:pointer;
     height:100%;
     line-height:inherit;
 }
-${({ theme }: { theme: Theme }) => css`
-height:${theme.space(10)};
-line-height:${theme.lineHeights(10)};
-font-weight:${theme.fontWeights("semibold")};
+${({ theme }: { theme: ThemeType }) => css`
+height:${theme.space[10]};
+line-height:${theme.space[10]};
+font-weight:${theme.fontWeights.semibold};
 &>button{
-    width:${theme.space(8)};
+    width:${theme.space[8]};
 }
 `}
 `;

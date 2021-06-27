@@ -1,4 +1,4 @@
-import { IUserProfile } from "../AppSettings";
+import { IUserProfile } from "../interfaces";
 
 export const defaultAppData: IAppData = {
     userProfile: {

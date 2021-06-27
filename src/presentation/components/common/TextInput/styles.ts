@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../../../theme";
+import { ThemeType } from "../../../../ui/theme";
 
 export const Wrapper = styled.div`
 width:100%;
 transition:box-shadow 100ms;
-${({ focused, theme }: { focused: boolean; theme: Theme }) => css`
-    border-bottom:1px solid ${theme.colors("primary")};
+${({ focused, theme }: { focused: boolean; theme: ThemeType }) => css`
+    border-bottom:1px solid ${theme.colors.primary[6]};
     box-shadow:none;
     ${focused && css`
-        box-shadow:0px 2px 1px ${theme.colors("primary", 7)};
+        box-shadow:0px 2px 1px ${theme.colors.primary[7]};
     ` }
 `}
 `;
@@ -25,16 +25,16 @@ background-color:transparent;
     outline: none;
 }
 
-${({ theme }: { theme: Theme }) => css`  
-    height:${theme.space(8)};
+${({ theme }: { theme: ThemeType }) => css`  
+    height:${theme.space[8]};
 `}
 `;
 
 export const Label = styled.label`
 font-weight:500;
 padding-left:0.3rem;
-${({ theme }: { theme: Theme }) => css`  
-line-height:${theme.space(4)};
-color: ${theme.colors("grey", 7)};
+${({ theme }: { theme: ThemeType }) => css`  
+line-height:${theme.space[4]};
+color: ${theme.colors.grey[7]};
 `}
 `

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../../../theme";
+import { ThemeType } from "../../../../ui/theme";
 
 export const TooltipContent = styled.div`
   position: absolute;
@@ -17,13 +17,13 @@ export const TooltipContent = styled.div`
     border-width: 5px;
     transform: rotate(45deg);
   }
-  ${({ theme }: { theme: Theme }) => css`
-    border-radius: ${theme.borderRadius("md")};
-    background-color: ${theme.colors("dark")};
-    color: ${theme.colors("light")};
-    font-weight: ${theme.fontWeights("medium")};
-    z-index: ${theme.zIndices("tooltip")};
-    box-shadow: ${theme.shadows("md")};
+  ${({ theme }: { theme: ThemeType }) => css`
+    border-radius: ${theme.borderRadius.md};
+    background-color: ${theme.colors.dark};
+    color: ${theme.colors.light};
+    font-weight: ${theme.fontWeights.medium};
+    z-index: ${theme.zIndices.tooltip};
+    box-shadow: 0px 0px 3px ${theme.colors.grey[3]};
   `}
 `;
 

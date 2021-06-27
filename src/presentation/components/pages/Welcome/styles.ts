@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../../../theme";
+import { ThemeType } from "../../../../ui/theme";
 
 export const WelcomeAside = styled.aside`
 height:100%;
@@ -42,16 +42,16 @@ cursor:pointer;
 @media only screen and (min-width:1024px){
     display:none;
 }
-${({ theme }: { theme: Theme; }) => css`
-z-index:${theme.zIndices("tooltip")};
-color:${theme.colors("light")};
-background-color:${theme.colors("transparent")};
+${({ theme }: { theme: ThemeType; }) => css`
+z-index:${theme.zIndices.tooltip};
+color:${theme.colors.light};
+background-color:${theme.colors.transparent};
 `}
 `;
 
 export const WelcomeWrapper = styled.div`
-width:100%;
-height:100%;
+width:100vw;
+height:100vh;
 & > * {
     display:inline-block;
 }

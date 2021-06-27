@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../../../../../theme";
+import { ThemeType } from "../../../../../../ui/theme";
 
 export const AppOptionsWrapper = styled.div`
 border:none;
@@ -10,10 +10,10 @@ position:absolute;
 right:5px;
 overflow:hidden;
 font-size:1rem;
-${({ theme }: { theme: Theme }) => css`
-line-height:${theme.lineHeights(6)};
-border-radius:${theme.borderRadius("md")};
-box-shadow:${theme.shadows("md")};
-z-index:${theme.zIndices("popover")}
+line-height:1;
+${({ theme }: { theme: ThemeType }) => css`
+border-radius:${theme.borderRadius.md};
+box-shadow:0px 0px 3px ${theme.colors.grey[6]};
+z-index:${theme.zIndices.popover};
 `};
 `;

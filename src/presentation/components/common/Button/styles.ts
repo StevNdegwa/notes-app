@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../../../theme";
+import { ThemeType } from "../../../../ui/theme";
 
 export const Wrapper = styled.button`
   display: inline-flex;
@@ -29,16 +29,18 @@ export const Wrapper = styled.button`
     width: 30px;
     background-color:transparent;
   }
-  ${({ transparent, theme, primary }: { theme: Theme; transparent: boolean; primary: boolean }) => css`
-    height: ${theme.space(10)};
+  ${({ transparent, theme, primary }: { theme: ThemeType; transparent: boolean; primary: boolean }) => css`
+    height: ${theme.space[10]};
     font-weight:600;
-    border-radius:${theme.borderRadius("sm")};
+    border-radius:${theme.borderRadius.sm};
+    
     ${transparent && css`
-      background-color:${theme.colors("transparent")};
+      background-color:${theme.colors.transparent};
+      color:${theme.button.backgroundColor};
     `}
     ${primary && css`
-      background-color:${theme.colors("primary")};
-      color:${theme.colors("light")};
+      background-color:${theme.button.backgroundColor};
+      color:${theme.button.color};
     `}
   `}
 `;

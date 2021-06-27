@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FC } from "react";
 import { FaChevronCircleRight } from "react-icons/fa";
 import AppContext from "../../../../AppContext";
 import {
@@ -10,8 +10,12 @@ import {
 import { WelcomeAds } from "./WelcomeAds";
 import { WelcomeX } from "./WelcomeX";
 
-export const Welcome = () => {
-  const [loginOpen, setLoginOpen] = useState<boolean>(false);
+export interface WelcomeProps {
+  toLogin?: boolean;
+}
+
+export const Welcome: FC<WelcomeProps> = ({ toLogin }) => {
+  const [loginOpen, setLoginOpen] = useState<boolean>(!!toLogin);
   let application = useContext(AppContext);
 
   return (

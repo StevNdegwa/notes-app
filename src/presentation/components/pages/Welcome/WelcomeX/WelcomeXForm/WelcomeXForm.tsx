@@ -1,8 +1,8 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { FaSignInAlt } from "react-icons/fa";
 import { Workspaces, WorkspaceListType } from "../../../../../../application";
-import { Select, Button } from "../../../../common";
+import { Button, NewSelect } from "../../../../common";
 
 export interface WelcomeXFormProps {
   workspaces: WorkspaceListType[];
@@ -15,7 +15,7 @@ export const WelcomeXForm: FC<WelcomeXFormProps> = ({
 }) => {
   let [error, setError] = useState<Error | null>(null);
 
-  const { register } = useFormContext();
+  const { control } = useFormContext();
 
   useEffect(() => {
     Workspaces.workSpacesList()
@@ -27,19 +27,18 @@ export const WelcomeXForm: FC<WelcomeXFormProps> = ({
       });
   }, [setWorkSpaces]);
 
-  let workSpace = useRef(register("workspace", { required: true }));
-
   return (
     <div className="select-a-workspace">
       {error && <p>{error.message}</p>}
-      <Select<WorkspaceListType>
+      <NewSelect<WorkspaceListType>
         name="workspace"
         placeholder="Select a workspace"
         options={workspaces}
         labelKey="name"
-        valueKey="wsRef"
-        ref={workSpace.current.ref}
-        onChange={workSpace.current.onChange}
+        control={control}
+        validation={{
+          required: { value: true, message: "Select a workspace" },
+        }}
       />
       <Button type="submit" transparent>
         <FaSignInAlt />

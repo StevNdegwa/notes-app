@@ -14,7 +14,6 @@ export const UpdateForm = () => {
           onChange={userName.current.onChange}
           ref={userName.current.ref}
           as="p"
-          label="User name"
           placeholder="User name.. e.g Stephen"
         />
       </div>

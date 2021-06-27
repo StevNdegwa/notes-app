@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Theme } from "../../../../../theme";
 
 export const WelcomeXWrapper = styled.div`
 width:100%;
@@ -22,7 +21,7 @@ height:100%;
     }
     &>h3{
         font-size:1.3rem;
-        line-height:${({ theme }: { theme: Theme }) => theme.lineHeights(3)};
+        line-height:1;
     }
     &>form{
         & div.select-a-workspace{

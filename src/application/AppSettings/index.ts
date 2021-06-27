@@ -1,10 +1,5 @@
 import { Database } from "../../infrastructure/db/classes";
-
-export interface IUserProfile {
-    id?: number;
-    name: string;
-    ref: string;
-}
+import { IUserProfile } from "../interfaces";
 
 export type IAppSettings = IUserProfile;
 
@@ -14,7 +9,8 @@ export class AppSettings {
     constructor() {
         this.db = new Database<IAppSettings>(
             "app_settings", {
-            userProfile: "++id,name, ref"
+            userProfile: "++id,name, ref",
+            theme: ""
         }, 1);
 
         this.db.on("populate", () => {

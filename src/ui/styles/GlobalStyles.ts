@@ -1,9 +1,16 @@
-import { createGlobalStyle } from "styled-components";
-import { Theme } from "./index";
+import { createGlobalStyle, css } from "styled-components";
+import WebFont from "webfontloader";
+import { ThemeType } from "../theme/themeFn";
 
 const textColor_1 = "hsla(0, 0%, 16%, 1)",
-  textColor_0_8 = "hsla(0, 0%, 47%, 1)",
-  backgroundColor = "hsla(0, 0%, 100%, 1)";
+  textColor_0_8 = "hsla(0, 0%, 47%, 1)";
+
+WebFont.load({
+  google: {
+    families: ["Roboto"]
+  }
+})
+
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -12,9 +19,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   body {
-    font: normal 300 16px ${({ theme }: { theme: Theme }) => theme.fonts("body")};
-    color: ${textColor_1};
-    background-color: ${backgroundColor};
+    ${({ theme }: { theme: ThemeType }) => css`
+    font: normal 300 16px ${theme.fontFamilies.main};
+    background-color:${theme.colors.light};
+    color: ${theme.colors.dark};
+    `};
   }
   html,
   body {
@@ -35,8 +44,5 @@ export const GlobalStyle = createGlobalStyle`
   }
   a{
     text-decoration:none;
-  }
-  div#root{
-    height: 100%;
   }
 `;
