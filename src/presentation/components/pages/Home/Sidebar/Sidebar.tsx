@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FaPowerOff } from "react-icons/fa";
+import { FaPowerOff, FaHome } from "react-icons/fa";
 import { Button, Logo } from "../../../common";
 import {
   SidebarWrapper,
@@ -19,7 +19,11 @@ export const Sidebar: FC<SidebarProps> = ({ openConfirmExitModal }) => {
       <SidbarHeader>
         <Logo />
       </SidbarHeader>
-      <SidebarMain></SidebarMain>
+      <SidebarMain>
+        <Button transparent>
+          <FaHome/>
+        </Button>
+      </SidebarMain>
       <SidebarFooter>
         <Button transparent onClick={openConfirmExitModal}>
           <FaPowerOff />

@@ -2,7 +2,8 @@ import { useRecoilValue } from "recoil";
 import { useState, useContext } from "react";
 import { FaRegMoon, FaSun } from "react-icons/fa";
 import { Redirect } from "react-router-dom";
-import { ThemeMode } from "../../../../ui/theme";
+import { useTheme } from "styled-components";
+import { ThemeMode, ThemeType } from "../../../../ui/theme";
 import {
   HomeWrapper,
   HomeAside,
@@ -12,7 +13,7 @@ import {
   HomeBottom,
   ThemeToggle,
 } from "./styles";
-import { useModal, ConfirmationModal } from "../../common";
+import { useModal, ConfirmationModal, CircularReveal } from "../../common";
 import { currentWorkSpaceAtom } from "../../../../application";
 import AppContext from "../../../../AppContext";
 import { Sidebar } from "./Sidebar";
@@ -24,6 +25,7 @@ export const Home = () => {
   const [logout, setLogout] = useState<boolean>(false);
   const { openModal, isOpen, closeModal } = useModal();
   const appContext = useContext(AppContext);
+  const theme = useTheme();
 
   if (!currentWorkSpace || logout) {
     return <Redirect to="/?login=true" />;
@@ -31,6 +33,7 @@ export const Home = () => {
 
   return (
     <HomeWrapper variants={loadVariant.wrapper} animate="">
+      <CircularReveal bg={(theme as ThemeType).body.backgroundColor} />
       <ConfirmationModal
         title="Confirm Exit"
         mainText="You're about to leave the application"
