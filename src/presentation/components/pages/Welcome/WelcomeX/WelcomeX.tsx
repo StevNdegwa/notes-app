@@ -48,7 +48,13 @@ export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
             Welcome {userName}{" "}
             <Tooltip
               content={
-                <div style={{ width: "100px", textAlign: "center" }}>
+                <div
+                  style={{
+                    width: "100px",
+                    textAlign: "center",
+                    whiteSpace: "break-spaces",
+                  }}
+                >
                   Replace this name with a prefered name by clicking options on
                   the top right of this page
                 </div>

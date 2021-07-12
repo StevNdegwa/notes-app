@@ -1,6 +1,7 @@
+import { useEffect, useRef } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { useSelect } from "downshift";
-import { Control } from "react-hook-form";
+import { Control, FieldErrors } from "react-hook-form";
 import { Input } from "../Input";
 import { SelectWrapper, SelectIcon, OptionsList } from "./styles";
 import { openVariants } from "./framer";
@@ -14,6 +15,7 @@ export interface NewSelectProps<OptionType> {
   labelKey: keyof OptionType;
   control: Control;
   validation?: RegisterOptions;
+  errors: FieldErrors;
 }
 
 export function NewSelect<OptionType>({
@@ -23,7 +25,16 @@ export function NewSelect<OptionType>({
   labelKey,
   control,
   validation,
+  errors,
 }: NewSelectProps<OptionType>) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.setCustomValidity(errors ? errors[name] : "");
+    }
+  }, [errors, name]);
+
   const Select = ({ value, onChange }: any) => {
     const { isOpen, getItemProps, getMenuProps, getToggleButtonProps } =
       useSelect({

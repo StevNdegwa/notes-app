@@ -1,22 +1,51 @@
 import styled, { css } from "styled-components";
 import { ThemeType } from "../../../../ui/theme";
+import { TooltipPosition } from "./TooltipPosition";
 
 export const TooltipContent = styled.div`
   position: absolute;
   padding: 0.5rem;
-  left: 120%;
-  top: 0;
   font-size: 0.8rem;
-  word-break: nowrap;
+  white-space: nowrap;
+  top: 25%;
   &::before {
-    content: " ";
-    color: red;
+    content:" ";
     position: absolute;
-    left: -3px;
-    border: solid black;
-    border-width: 5px;
-    transform: rotate(45deg);
+    width: 0px;
+    height: 0px;
+    background-color: transparent;
+    border: 5px solid transparent;
   }
+  ${({ position, theme }: { position: TooltipPosition, theme: ThemeType }) => {
+    switch (position) {
+      case TooltipPosition.RIGHT:
+        return css`
+          left: 120%;
+          &::before {
+            left:-10px;
+            border-right-color: ${theme.colors.dark};
+          }
+        `;
+      case TooltipPosition.LEFT:
+        return css`
+          right: 120%;
+          &::before {
+            left: 100%;
+            border-left-color: ${theme.colors.dark};
+          }
+        `;
+      default:
+        return css`
+          left: 120%;
+          top: 0;
+          &::before {
+            content: " ";
+            left: -3px;
+            transform: rotate(45deg);
+          }
+        `;
+    }
+  }}
   ${({ theme }: { theme: ThemeType }) => css`
     border-radius: ${theme.borderRadius.md};
     background-color: ${theme.colors.dark};

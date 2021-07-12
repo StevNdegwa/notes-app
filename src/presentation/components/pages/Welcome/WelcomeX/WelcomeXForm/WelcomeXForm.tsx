@@ -15,7 +15,7 @@ export const WelcomeXForm: FC<WelcomeXFormProps> = ({
 }) => {
   let [error, setError] = useState<Error | null>(null);
 
-  const { control } = useFormContext();
+  const { control, formState:{ errors } } = useFormContext();
 
   useEffect(() => {
     Workspaces.workSpacesList()
@@ -31,6 +31,7 @@ export const WelcomeXForm: FC<WelcomeXFormProps> = ({
     <div className="select-a-workspace">
       {error && <p>{error.message}</p>}
       <NewSelect<WorkspaceListType>
+        errors={errors}
         name="workspace"
         placeholder="Select a workspace"
         options={workspaces}
@@ -40,7 +41,7 @@ export const WelcomeXForm: FC<WelcomeXFormProps> = ({
           required: { value: true, message: "Select a workspace" },
         }}
       />
-      <Button type="submit" transparent>
+      <Button type="submit" transparent style={{marginLeft:"0.5rem"}}>
         <FaSignInAlt />
       </Button>
     </div>

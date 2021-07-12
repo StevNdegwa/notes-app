@@ -1,18 +1,17 @@
 import { Database } from "../../infrastructure/db/classes";
+import { INote } from "../interfaces";
 
-
-export interface NotesType {
-    id: number;
-    note: string;
-    created: Date;
-}
-
-export type NotesDataTypes = NotesType;
+export type NotesDataTypes = INote;
 
 export class Notes {
     db: Database<NotesDataTypes>;
 
-    constructor(name: string) {
-        this.db = new Database<NotesDataTypes>(`${name}_note`, { notes: "++id,text,created" }, 1);
+    constructor() {
+        this.db = new Database<NotesDataTypes>("notes",
+            {
+                notes: "++id,created,lastEdited,title,shortText,content,workspace"
+            },
+            1
+        );
     }
 }

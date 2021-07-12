@@ -30,6 +30,7 @@ export const SidebarMain = styled.div`
 width:100%;
 height:calc(100% - 80px);
 text-align:center;
+padding-top:1rem;
 & button{
     color:white !important;
     font-size:2rem;

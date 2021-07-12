@@ -29,7 +29,7 @@ export const Wrapper = styled.button`
     width: 30px;
     background-color:transparent;
   }
-  ${({ transparent, theme, primary }: { theme: ThemeType; transparent: boolean; primary: boolean }) => css`
+  ${({ transparent, theme, primary, secondary }: { theme: ThemeType; transparent: boolean; primary: boolean; secondary:boolean; }) => css`
     height: ${theme.space[10]};
     font-weight:600;
     border-radius:${theme.borderRadius.sm};
@@ -40,6 +40,10 @@ export const Wrapper = styled.button`
     `}
     ${primary && css`
       background-color:${theme.button.backgroundColor};
+      color:${theme.button.color};
+    `}
+    ${secondary && css`
+      background-color:${theme.colors.secondary[5]};
       color:${theme.button.color};
     `}
   `}

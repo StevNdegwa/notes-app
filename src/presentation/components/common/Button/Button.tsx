@@ -7,6 +7,7 @@ export interface ButtonProps {
   rightIcon?: IconType;
   transparent?: boolean;
   primary?: boolean;
+  secondary?: boolean;
   [props: string]: any;
 }
 
@@ -18,6 +19,7 @@ const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       transparent,
       primary,
+      secondary,
       ...props
     },
     ref
@@ -26,6 +28,7 @@ const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       transparent={!!transparent}
       primary={!!primary}
+      secondary={!!secondary}
       {...props}
     >
       {LeftIcon && (

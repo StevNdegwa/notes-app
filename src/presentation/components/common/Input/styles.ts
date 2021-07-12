@@ -6,9 +6,6 @@ display:block;
 border:none;
 width:100%;
 line-height:1;
-&:focus{
-    outline:none;
-}
 ${({ theme }: { theme: ThemeType; }) => css`
 background-color: ${theme.colors.primary[0]};
 height: ${theme.space[10]};

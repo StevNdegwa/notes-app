@@ -51,13 +51,13 @@ border-bottom:1px inset ${theme.colors.primary[0]};
 `;
 export const HomeMiddle = styled.section`
 width:100%;
-height:calc(100% - 120px);
+height:calc(100% - 70px);
 `;
 export const HomeBottom = styled.section`
 width:100%;
-height:20px;
+height:5px;
 @media only screen and (min-width: 730px){
-    height:40px;
+    height:10px;
 }
 `;
 

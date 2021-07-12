@@ -17,6 +17,7 @@ import { useModal, ConfirmationModal, CircularReveal } from "../../common";
 import { currentWorkSpaceAtom } from "../../../../application";
 import AppContext from "../../../../AppContext";
 import { Sidebar } from "./Sidebar";
+import { Main } from "./Main";
 
 import { loadVariant } from "./framer";
 
@@ -56,18 +57,20 @@ export const Home = () => {
               onClick={() => appContext.toggleLightDark?.()}
             >
               {appContext.themeMode === ThemeMode.LIGHT ? (
-                <span className="light">
-                  <FaSun />
-                </span>
-              ) : (
                 <span className="dark">
                   <FaRegMoon />
+                </span>
+              ) : (
+                <span className="light">
+                  <FaSun />
                 </span>
               )}
             </ThemeToggle>
           </div>
         </HomeTop>
-        <HomeMiddle></HomeMiddle>
+        <HomeMiddle>
+          <Main />
+        </HomeMiddle>
         <HomeBottom></HomeBottom>
       </HomeMain>
     </HomeWrapper>
