@@ -1,7 +1,12 @@
 import { FC, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaInfoCircle } from "react-icons/fa";
+import {
+  FaInfoCircle,
+  FaTwitter,
+  FaLinkedinIn,
+  FaPinterestP,
+} from "react-icons/fa";
 import { useSetRecoilState } from "recoil";
 import {
   currentWorkSpaceAtom,
@@ -9,7 +14,13 @@ import {
 } from "../../../../../application";
 import { Button, Form, Tooltip } from "../../../common";
 import { WelcomeXForm } from "./WelcomeXForm";
-import { WelcomeXWrapper, WelcomeXHeader, WelcomeXMain } from "./styles";
+import {
+  WelcomeXWrapper,
+  WelcomeXHeader,
+  WelcomeXMain,
+  WelcomeXFooter,
+  SocialMediaIcon,
+} from "./styles";
 import { AppOptions } from "./AppOptions";
 
 export type WelcomeXFormType = {
@@ -79,7 +90,29 @@ export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
           </Link>
         </motion.div>
       </WelcomeXMain>
-      <footer></footer>
+      <WelcomeXFooter>
+        <SocialMediaIcon
+          href="https://twitter.com/"
+          target="_blank"
+          title="Twitter"
+        >
+          <FaTwitter />
+        </SocialMediaIcon>
+        <SocialMediaIcon
+          href="https://www.linkedin.com/"
+          target="_blank"
+          title="LinkedIn"
+        >
+          <FaLinkedinIn />
+        </SocialMediaIcon>
+        <SocialMediaIcon
+          href="https://www.pinterest.com/"
+          target="_blank"
+          title="Pinterest"
+        >
+          <FaPinterestP />
+        </SocialMediaIcon>
+      </WelcomeXFooter>
     </WelcomeXWrapper>
   );
 };

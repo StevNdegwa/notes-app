@@ -9,11 +9,12 @@ export const WelcomeXHeader = styled.header`
 text-align:right;
 padding:0.2rem;
 position:relative;
+height:3rem;
 `;
 
 export const WelcomeXMain = styled.main`
 padding:0.2rem;
-height:100%;
+height:50%;
 &>div{
     padding:1rem;
     @media only screen and (min-width:1025px){
@@ -33,4 +34,23 @@ height:100%;
         }
     }
 }
+`;
+
+export const SocialMediaIcon = styled.a`
+width:3rem;
+height:3rem;
+background-color:hsla(210, 88%, 87%, 1);
+display:inline-block;
+font-size:2rem;
+border-radius:50%;
+margin:0.5rem;
+&>svg{
+    vertical-align:middle;
+}
+`;
+
+export const WelcomeXFooter = styled.footer`
+height:calc(50% - 3rem);
+width:100%;
+text-align:center;
 `;
