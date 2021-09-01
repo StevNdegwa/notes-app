@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC, useCallback, useContext, useState } from "react";
 import { AppSettings, IUserProfile } from "../../../../../application";
 import { FeedbackTypes } from "../../../FeedbackTypes";
 import AppContext from "../../../../../AppContext";
@@ -17,19 +17,22 @@ export const UserProfile: FC = () => {
     error: null,
   });
 
-  const handleSubmit = (data: IUserProfile) => {
-    new AppSettings()
-      .updateUserProfile(data)
-      .then(() => {
-        setFeedback({ status: FeedbackTypes.SUCCESS });
-        if (application.loadApp) {
-          application.loadApp();
-        }
-      })
-      .catch((error: any) => {
-        setFeedback({ status: FeedbackTypes.ERROR, error });
-      });
-  };
+  const handleSubmit = useCallback(
+    (data: IUserProfile) => {
+      new AppSettings()
+        .updateUserProfile(data)
+        .then(() => {
+          setFeedback({ status: FeedbackTypes.SUCCESS });
+          if (application.loadApp) {
+            application.loadApp();
+          }
+        })
+        .catch((error: any) => {
+          setFeedback({ status: FeedbackTypes.ERROR, error });
+        });
+    },
+    [application]
+  );
 
   return (
     <UserProfileWrapper>

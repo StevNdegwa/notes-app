@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback } from "react";
 import { FaRegMoon, FaSun } from "react-icons/fa";
 import { Redirect } from "react-router-dom";
 import { useTheme } from "styled-components";
@@ -28,6 +28,16 @@ export const Home = () => {
   const appContext = useContext(AppContext);
   const theme = useTheme();
 
+  const handleThemeToggleClick = useCallback(
+    () => appContext.toggleLightDark?.(),
+    [appContext]
+  );
+
+  const confirmLogout = useCallback(() => {
+    closeModal();
+    setLogout(true);
+  }, [closeModal]);
+
   if (!currentWorkSpace || logout) {
     return <Redirect to="/?login=true" />;
   }
@@ -40,10 +50,7 @@ export const Home = () => {
         mainText="You're about to leave the application"
         isOpen={isOpen}
         cancelAction={closeModal}
-        confirmAction={() => {
-          closeModal();
-          setLogout(true);
-        }}
+        confirmAction={confirmLogout}
       />
       <HomeAside>
         <Sidebar openConfirmExitModal={openModal} />
@@ -52,10 +59,7 @@ export const Home = () => {
         <HomeTop>
           <div>{currentWorkSpace?.name}</div>
           <div>
-            <ThemeToggle
-              transparent
-              onClick={() => appContext.toggleLightDark?.()}
-            >
+            <ThemeToggle transparent onClick={handleThemeToggleClick}>
               {appContext.themeMode === ThemeMode.LIGHT ? (
                 <span className="dark">
                   <FaRegMoon />

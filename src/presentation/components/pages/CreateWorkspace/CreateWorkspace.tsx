@@ -27,7 +27,7 @@ export const CreateWorkspace = () => {
         setWorkspace({ status: FeedbackTypes.ERROR, error, name: "" });
       }
     },
-    []
+    [setWorkspace]
   );
 
   return (

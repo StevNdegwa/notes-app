@@ -9,7 +9,7 @@ import { useRef } from "react";
 
 const variants = {
   hidden: { display: "none" },
-  visible: { display: "block", y:["-5px", "0px"] },
+  visible: { display: "block", y: ["-5px", "0px"] },
 };
 
 export const AppOptions: FC = () => {
@@ -27,6 +27,8 @@ export const AppOptions: FC = () => {
     }
   }, []);
 
+  const toggleOpen = useCallback(() => setOpen((s) => !s), [setOpen]);
+
   useEffect(() => {
     document.addEventListener("click", handleClickEvt);
     return () => {
@@ -36,7 +38,7 @@ export const AppOptions: FC = () => {
 
   return (
     <>
-      <Button transparent onClick={() => setOpen((s) => !s)} ref={btnRef}>
+      <Button transparent onClick={toggleOpen} ref={btnRef}>
         <FaEllipsisV />
       </Button>
       <AppOptionsWrapper

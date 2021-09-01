@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { List, Button } from "../../../common";
 import { AppSettingsSections } from "../AppSettings";
@@ -9,11 +9,16 @@ export interface AppSettingsMenuProps {
 }
 
 export const AppSettingsMenu: FC<AppSettingsMenuProps> = ({ moveTo }) => {
+  const moveToUserProfil = useCallback(
+    () => moveTo(AppSettingsSections.USER_PROFILE),
+    [moveTo]
+  );
+
   return (
     <MenuWrapper>
       <List
         items={[
-          <MenuItem onClick={() => moveTo(AppSettingsSections.USER_PROFILE)}>
+          <MenuItem onClick={moveToUserProfil}>
             <div>User Profile</div>
             <Button transparent>
               <FaChevronRight />

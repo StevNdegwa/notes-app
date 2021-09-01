@@ -19,13 +19,13 @@ export const Main = () => {
     }
   }, []);
 
-  const moveToList = () => {
+  const moveToList = useCallback(() => {
     setShowing("LIST");
-  };
+  }, []);
 
-  const moveToEditor = () => {
+  const moveToEditor = useCallback(() => {
     setShowing("NOTE_EDITOR");
-  };
+  }, []);
 
   return (
     <MainWrapper>

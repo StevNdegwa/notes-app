@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { AppLayout } from "../../common";
 import { SectionsLayout } from "./SectionsLayout";
 import { AppSettingsMenu } from "./AppSettingsMenu";
@@ -14,20 +14,28 @@ export const AppSettings = () => {
     AppSettingsSections.MENU
   );
 
-  const renderPageContent = (layer: AppSettingsSections) => {
-    switch (layer) {
-      case AppSettingsSections.MENU:
-        return <AppSettingsMenu moveTo={setLayerShowing} />;
-      case AppSettingsSections.USER_PROFILE:
-        return (
-          <SectionsLayout backToMenu={()=>setLayerShowing(AppSettingsSections.MENU)}>
-            <UserProfile/>
-          </SectionsLayout>
-        );
-      default:
-        return null;
-    }
-  };
+  const openMenu = useCallback(
+    () => setLayerShowing(AppSettingsSections.MENU),
+    [setLayerShowing]
+  );
+
+  const renderPageContent = useCallback(
+    (layer: AppSettingsSections) => {
+      switch (layer) {
+        case AppSettingsSections.MENU:
+          return <AppSettingsMenu moveTo={setLayerShowing} />;
+        case AppSettingsSections.USER_PROFILE:
+          return (
+            <SectionsLayout backToMenu={openMenu}>
+              <UserProfile />
+            </SectionsLayout>
+          );
+        default:
+          return null;
+      }
+    },
+    [openMenu]
+  );
 
   return <AppLayout>{renderPageContent(layerShowing)}</AppLayout>;
 };

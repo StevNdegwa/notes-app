@@ -10,3 +10,8 @@ border-radius: ${theme.borderRadius.md};
 box-shadow: 0px 0px 2px ${theme.colors.grey[5]};
 `}
 `;
+
+
+export const CreateNoteHeader = styled.div`
+width:100%;
+`;

@@ -15,7 +15,7 @@ export const CWForm = () => {
         onChange={workspaceName.current.onChange}
         placeholder="Workspace name.. e.g TED Talks"
       />
-      <div style={{padding:"1rem"}}>
+      <div style={{ padding: "1rem" }}>
         <Button type="submit" primary>
           Create
         </Button>
