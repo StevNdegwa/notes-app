@@ -8,7 +8,7 @@ import { NotesList } from "./NotesList";
 export type ShowType = "LIST" | "NOTE_EDITOR" | "NOTE_VIEW";
 
 export const Main = () => {
-  const [showing, setShowing] = useState<ShowType>("LIST");
+  const [showing, setShowing] = useState<ShowType>("NOTE_EDITOR");
 
   const show = useCallback((showing: ShowType) => {
     switch (showing) {

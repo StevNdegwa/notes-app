@@ -11,7 +11,16 @@ box-shadow: 0px 0px 2px ${theme.colors.grey[5]};
 `}
 `;
 
-
-export const CreateNoteHeader = styled.div`
+export const CreateNoteEditor = styled.div`
 width:100%;
+height:calc(100% - 4rem);
+overflow:auto;
+`;
+
+export const CreateNoteActions = styled.div`
+width:100%;
+height:4rem;
+display:flex;
+justify-content:space-between;
+padding:0.5rem 2rem;
 `;
