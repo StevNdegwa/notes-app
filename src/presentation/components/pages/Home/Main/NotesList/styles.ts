@@ -52,3 +52,23 @@ height:4rem;
     margin:1rem;
 }
 `;
+
+export const NotesUnorderedList = styled.ul`
+width:90%;
+margin:auto;
+`;
+
+export const NotesOrderedList = styled.ol`
+width:90%;
+margin:auto;
+`;
+
+export const NotesHeading = styled.h2`
+font-weight:600;
+font-size:1.3rem;
+margin:0.5rem 0;
+`;
+
+export const NotesParagraph = styled.p`
+line-height:1.5;
+`;

@@ -1,5 +1,5 @@
-import { useRecoilValue } from "recoil";
-import { useState, useContext, useCallback } from "react";
+import { useState, useContext, useCallback, useEffect } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { FaRegMoon, FaSun } from "react-icons/fa";
 import { Redirect } from "react-router-dom";
 import { useTheme } from "styled-components";
@@ -14,7 +14,11 @@ import {
   ThemeToggle,
 } from "./styles";
 import { useModal, ConfirmationModal, CircularReveal } from "../../common";
-import { currentWorkSpaceAtom } from "../../../../application";
+import {
+  currentWorkSpaceAtom,
+  Notes,
+  notesAtom,
+} from "../../../../application";
 import AppContext from "../../../../AppContext";
 import { Sidebar } from "./Sidebar";
 import { Main } from "./Main";
@@ -27,6 +31,7 @@ export const Home = () => {
   const { openModal, isOpen, closeModal } = useModal();
   const appContext = useContext(AppContext);
   const theme = useTheme();
+  const setNotes = useSetRecoilState(notesAtom);
 
   const handleThemeToggleClick = useCallback(
     () => appContext.toggleLightDark?.(),
@@ -37,6 +42,18 @@ export const Home = () => {
     closeModal();
     setLogout(true);
   }, [closeModal]);
+
+  useEffect(() => {
+    async function setNotesFn() {
+      if (currentWorkSpace?.wsRef) {
+        let notes = await new Notes().getWorkspaceNotes(currentWorkSpace.wsRef);
+
+        setNotes(notes || []);
+      }
+    }
+
+    setNotesFn();
+  }, [currentWorkSpace, setNotes]);
 
   if (!currentWorkSpace || logout) {
     return <Redirect to="/?login=true" />;

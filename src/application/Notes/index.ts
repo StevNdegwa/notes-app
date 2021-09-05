@@ -1,17 +1,29 @@
 import { Database } from "../../infrastructure/db/classes";
 import { INote } from "../interfaces";
 
-export type NotesDataTypes = INote;
+export type NotesDataType = INote;
 
 export class Notes {
-    db: Database<NotesDataTypes>;
+    db: Database<NotesDataType>;
 
     constructor() {
-        this.db = new Database<NotesDataTypes>("notes",
+        this.db = new Database<NotesDataType>("notes",
             {
-                notes: "++id,created,lastEdited,title,shortText,content,workspace"
+                note: "++id,created,lastEdited,content,workspace"
             },
             1
         );
+    }
+
+    addNote(note: NotesDataType) {
+        return this.db.table("note").put(note);
+    }
+
+    getAllNotes() {
+        return this.db.table("note").toArray()
+    }
+
+    getWorkspaceNotes(workspace: string) {
+        return this.db.table("note").where({ workspace }).toArray().then((notes) => notes.map((note) => ({ ...note, content: JSON.parse(note.content) })));
     }
 }
