@@ -12,11 +12,15 @@ import {
   AppSettings,
   Home,
 } from "./presentation/components/pages";
+import { Notifications } from "./presentation/components/common";
 
 import AppContext from "./AppContext";
 
 export default function App() {
-  const { theme, setNewTheme, themeMode, toggleLightDark } = useTheme(light, ThemeMode.LIGHT);
+  const { theme, setNewTheme, themeMode, toggleLightDark } = useTheme(
+    light,
+    ThemeMode.LIGHT
+  );
 
   const [applicationData, setApplicationData] =
     useState<IAppData>(defaultAppData);
@@ -39,12 +43,13 @@ export default function App() {
         loadApp,
         setNewTheme,
         themeMode,
-        toggleLightDark
+        toggleLightDark,
       }}
     >
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <RecoilRoot>
+          <Notifications />
           <Router>
             <Switch>
               <Route path="/home" component={Home} />

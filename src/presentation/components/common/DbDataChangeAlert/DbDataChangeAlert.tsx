@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Alert } from "../Alert";
-import { FeedbackTypes } from "../../FeedbackTypes";
+import { FeedbackTypes } from "../../../../shared";
 import { showVariants } from "./framer";
 
 export interface DbDataChangeAlertProps {

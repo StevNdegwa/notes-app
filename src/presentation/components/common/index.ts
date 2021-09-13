@@ -16,3 +16,4 @@ export * from "./Modal";
 export * from "./ConfirmationModal";
 export * from "./NewSelect";
 export * from "./CircularReveal";
+export * from "./Notifications";

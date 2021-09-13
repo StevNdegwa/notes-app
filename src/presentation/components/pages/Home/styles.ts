@@ -4,10 +4,13 @@ import { ThemeType } from "../../../../ui/theme";
 import { Button } from "../../common";
 
 export const HomeWrapper = styled(motion.div)`
+${({ theme }: { theme: ThemeType }) => css`
 width:100vw;
 height:100vh;
-display:flex;
-${({ theme }: { theme: ThemeType }) => css`
+display:grid;
+grid-template-columns: 100px calc(100% - 100px);
+grid-template-rows: 100%;
+grid-template-areas: 'aside main';
 background-color:${theme.body.backgroundColor};
 color:${theme.body.color};
 `}
@@ -15,39 +18,35 @@ color:${theme.body.color};
 
 export const HomeAside = styled.aside`
 height:100%;
-width:60px;
-padding:0.5rem;
+grid-area: aside;
 @media only screen and (min-width: 730px){
     width:100px;
-    padding:0.5rem;
 }
 `;
 
 export const HomeMain = styled.main`
-width:100%;
+grid-area: main;
 `;
 
 export const HomeTop = styled.section`
+${({ theme }: { theme: ThemeType; }) => css`
 width:100%;
 height:40px;
 line-height:40px;
 display:flex;
 justify-content:space-between;
-${({ theme }: { theme: ThemeType; }) => css`
 font-size:${theme.fontSizes.md};
 font-weight:${theme.fontWeights.semibold};
 padding:0 ${theme.space[4]};
 border-bottom:1px inset ${theme.colors.primary[0]};
-`}
 @media only screen and (min-width: 730px){
     height:60px;
     line-height:60px;
-    ${({ theme }: { theme: ThemeType; }) => css`
     font-size:${theme.fontSizes.lg};
     font-weight:${theme.fontWeights.semibold};
     padding:0 ${theme.space[8]};
-    `}
 }
+`}
 `;
 export const HomeMiddle = styled.section`
 width:100%;

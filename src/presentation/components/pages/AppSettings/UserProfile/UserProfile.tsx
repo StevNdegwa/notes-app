@@ -1,6 +1,6 @@
 import { FC, useCallback, useContext, useState } from "react";
 import { AppSettings, IUserProfile } from "../../../../../application";
-import { FeedbackTypes } from "../../../FeedbackTypes";
+import { FeedbackTypes } from "../../../../../shared";
 import AppContext from "../../../../../AppContext";
 import { Form, DbDataChangeAlert } from "../../../common";
 import { UpdateForm } from "./UpdateForm";

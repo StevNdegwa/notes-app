@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { FeedbackTypes } from "../../FeedbackTypes";
+import { FeedbackTypes } from "../../../../shared";
 import { Workspaces } from "../../../../application/Workspaces";
 import { CWForm } from "./CWForm";
 import { Form, AppLayout, DbDataChangeAlert } from "../../common";

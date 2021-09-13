@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { ThemeType } from "../../../../ui/theme";
-import { FeedbackTypes } from "../../FeedbackTypes";
+import { FeedbackTypes } from "../../../../shared";
 import { Container } from "../Container";
 
 export const Wrapper = styled(Container)`
@@ -17,8 +17,8 @@ border:2px solid;
 ${({ theme, paint, feedback }: { theme: ThemeType; paint?: string; feedback?: FeedbackTypes; }) => {
         if (feedback) {
             paint = (feedback === FeedbackTypes.ERROR) ? theme.colors.error[5] :
-            (feedback === FeedbackTypes.WARNING) ? theme.colors.warning[5] :
-                (feedback === FeedbackTypes.SUCCESS) ? theme.colors.success[5] : undefined;
+                (feedback === FeedbackTypes.WARNING) ? theme.colors.warning[5] :
+                    (feedback === FeedbackTypes.SUCCESS) ? theme.colors.success[5] : undefined;
         }
 
         return !paint ?

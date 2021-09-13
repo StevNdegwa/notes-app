@@ -11,18 +11,20 @@ import {
   NotesParagraph,
 } from "./styles";
 
-export const NotesList: FC<{}> = () => {
+export interface NotesListProps {
+  width: string;
+}
+
+export const NotesList: FC<NotesListProps> = ({ width }) => {
   const notes = useRecoilValue(notesAtom);
 
-  console.log(notes);
-
   return (
-    <NotesListWrapper animate={{ x: [-200, 0] }}>
+    <NotesListWrapper animate={{ x: [-200, 0] }} style={{ width }}>
       {notes.map(({ content, id }) => {
         return (
           <Note key={id}>
-            {content.blocks.map((block: OutputBlockData) => {
-              return render(block);
+            {content.blocks.map((block: OutputBlockData, index: number) => {
+              return render(block, index);
             })}
           </Note>
         );
@@ -31,27 +33,27 @@ export const NotesList: FC<{}> = () => {
   );
 };
 
-function render(block: OutputBlockData) {
+function render(block: OutputBlockData, index: number) {
   switch (block.type) {
     case "header":
-      return <NotesHeading>{block.data.text}</NotesHeading>;
+      return <NotesHeading key={index}>{block.data.text}</NotesHeading>;
     case "paragraph":
-      return <NotesParagraph>{block.data.text}</NotesParagraph>;
+      return <NotesParagraph key={index}>{block.data.text}</NotesParagraph>;
     case "list":
       return block.data.style === "ordered" ? (
-        <NotesOrderedList>
+        <NotesOrderedList key={index}>
           {block.data.items.map((item: string, index: number) => (
             <li key={index}>{item}</li>
           ))}
         </NotesOrderedList>
       ) : (
-        <NotesUnorderedList>
+        <NotesUnorderedList key={index}>
           {block.data.items.map((item: string, index: number) => (
             <li key={index}>{item}</li>
           ))}
         </NotesUnorderedList>
       );
     default:
-      return <div>{block.data.text}</div>;
+      return <div key={index}>{block.data.text}</div>;
   }
 }

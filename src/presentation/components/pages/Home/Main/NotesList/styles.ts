@@ -4,15 +4,13 @@ import { ThemeType } from "../../../../../../ui/theme";
 
 export const NotesListWrapper = styled(motion.ul)`
 padding-top:0.5rem;
-width:100%;
+display:inline-block;
 height:100%;
-${({ theme }: { theme: ThemeType }) => css`
-border-radius: ${theme.borderRadius.md};
-box-shadow: 0px 0px 2px ${theme.colors.grey[5]};
-`}
+overflow:auto;
 `;
 
 export const Note = styled.li`
+${({ theme }: { theme: ThemeType }) => css`
 list-style-type:none;
 margin:1rem;
 margin-top:0.5rem;
@@ -21,7 +19,6 @@ padding:0.5rem;
     line-height:2.5rem;
     padding-left:0.5rem;
 }
-${({ theme }: { theme: ThemeType }) => css`
 border-radius: ${theme.borderRadius.md};
 box-shadow: 0px 1px 1px ${theme.colors.grey[5]};
 & h3{
@@ -31,12 +28,12 @@ box-shadow: 0px 1px 1px ${theme.colors.grey[5]};
 `;
 
 export const Preamble = styled.div`
+${({ theme }: { theme: ThemeType }) => css`
 width:100%;
 cursor:pointer;
 padding:0.5rem;
 box-shadow:none;
 transition:box-shadow 200;
-${({ theme }: { theme: ThemeType }) => css`
 border-radius: ${theme.borderRadius.md};
 &:hover{
     box-shadow: 0px 0px 3px inset ${theme.colors.grey[2]};

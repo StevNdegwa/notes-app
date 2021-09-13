@@ -3,10 +3,12 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import EditorJS, { ToolConstructable } from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "./EditorJSList";
+import { FeedbackTypes } from "../../../../../../shared";
 import {
   Notes,
   currentWorkSpaceAtom,
   notesAtom,
+  notificationsAtom,
 } from "../../../../../../application";
 import { FaSave, FaTimesCircle } from "react-icons/fa";
 import { Button } from "../../../../common";
@@ -18,13 +20,15 @@ import {
 
 export interface CreateNoteProps {
   data?: any;
+  width: string;
 }
 
-export const CreateNote: FC<CreateNoteProps> = ({ data }) => {
+export const CreateNote: FC<CreateNoteProps> = ({ data, width }) => {
   const [editor, setEditor] = useState<EditorJS | null>(null);
   const [canSave, setCanSave] = useState<boolean>(false);
   const currentWorkspace = useRecoilValue(currentWorkSpaceAtom);
   const setNotes = useSetRecoilState(notesAtom);
+  const setNotifications = useSetRecoilState(notificationsAtom);
 
   useEffect(() => {
     setEditor(
@@ -53,37 +57,61 @@ export const CreateNote: FC<CreateNoteProps> = ({ data }) => {
   }, []);
 
   const saveNote = useCallback(() => {
-    editor?.save().then((content) => {
-      if (currentWorkspace?.wsRef) {
-        new Notes().addNote({
-          created: new Date(),
-          lastEdited: new Date(),
-          workspace: currentWorkspace.wsRef,
-          content: JSON.stringify(content),
-        });
-
-        setNotes((notes) => [
-          ...notes,
-          {
+    editor
+      ?.save()
+      .then((content) => {
+        if (currentWorkspace?.wsRef) {
+          new Notes().addNote({
             created: new Date(),
             lastEdited: new Date(),
             workspace: currentWorkspace.wsRef,
-            content,
-          },
+            content: JSON.stringify(content),
+          });
+
+          setNotes((notes) => [
+            ...notes,
+            {
+              created: new Date(),
+              lastEdited: new Date(),
+              workspace: currentWorkspace.wsRef,
+              content,
+            },
+          ]);
+        }
+      })
+      .then(() => {
+        setNotifications((n) => [
+          ...n,
+          { content: "New note added", feedback: FeedbackTypes.SUCCESS },
         ]);
-      }
+      })
+      .catch(() => {
+        setNotifications((n) => [
+          ...n,
+          { content: "Error creating note", feedback: FeedbackTypes.ERROR },
+        ]);
+      });
+  }, [currentWorkspace?.wsRef, editor, setNotes, setNotifications]);
+
+  const handleCancel = useCallback(() => {
+    editor?.clear();
+    setNotifications((n) => {
+      const nn = [...n];
+      nn.push({
+        content: "Successfully canceled",
+        feedback: FeedbackTypes.ERROR,
+      });
+      return nn;
     });
-  }, [currentWorkspace, editor, setNotes]);
+  }, [editor, setNotifications]);
 
   return (
-    <CreateNoteWrapper
-      animate={{
-        x: [-200, 0],
-      }}
-    >
+    <CreateNoteWrapper style={{ width }}>
       <CreateNoteEditor id="note_editor" />
       <CreateNoteActions>
-        <Button leftIcon={FaTimesCircle}>Cancel</Button>
+        <Button leftIcon={FaTimesCircle} onClick={handleCancel}>
+          Cancel
+        </Button>
         <Button
           primary
           onClick={saveNote}

@@ -2,7 +2,9 @@ import styled, { css } from "styled-components";
 import { ThemeType } from "../../../../../ui/theme";
 
 export const SidebarWrapper = styled.div`
-height:100%;
+height:calc(100% - 1rem);
+width:calc(100% - 1rem);
+margin:0.5rem;
 ${({ theme }: { theme: ThemeType }) => css`
 background-color:${theme.colors.primary[6]};
 box-shadow:0px 2px 2px ${theme.colors.grey[5]};
