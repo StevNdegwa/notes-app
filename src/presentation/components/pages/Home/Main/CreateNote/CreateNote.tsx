@@ -110,7 +110,7 @@ export const CreateNote: FC<CreateNoteProps> = ({ data, width }) => {
       <CreateNoteEditor id="note_editor" />
       <CreateNoteActions>
         <Button leftIcon={FaTimesCircle} onClick={handleCancel}>
-          Cancel
+          Clear
         </Button>
         <Button
           primary
