@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { FaPlus, FaArrowAltCircleLeft } from "react-icons/fa";
-import { Button, Tooltip, TooltipPosition } from "../../../common";
+import { Button, Tooltip, TooltipPosition, useModal } from "../../../common";
 import { MainWrapper, MainToolbar, MainContent } from "./styles";
 import { CreateNote } from "./CreateNote";
 import { NotesList } from "./NotesList";
@@ -11,6 +11,7 @@ export const Main = () => {
   const [showing, setShowing] = useState<ShowType>("LIST");
   const content = useRef<HTMLDivElement | null>(null);
   const slides = useRef<HTMLDivElement | null>(null);
+  const { isOpen, closeModal, toggleModal } = useModal({ isOpen: true });
 
   const { width, wrapperWidth } = useMemo<{
     width: number;
@@ -33,7 +34,8 @@ export const Main = () => {
 
   const moveToEditor = useCallback(() => {
     setShowing("EDITOR");
-  }, []);
+    toggleModal();
+  }, [toggleModal]);
 
   useEffect(() => {
     if (content.current) {
@@ -73,7 +75,7 @@ export const Main = () => {
           }}
         >
           <NotesList width={`${width}px`} />
-          <CreateNote width={`${width}px`} />
+          <CreateNote width={`${width}px`} modal={{isOpen, closeModal}} />
         </div>
       </MainContent>
     </MainWrapper>

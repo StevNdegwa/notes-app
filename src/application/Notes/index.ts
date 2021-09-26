@@ -1,3 +1,4 @@
+import { IndexableType } from "dexie";
 import { Database } from "../../infrastructure/db/classes";
 import { INote } from "../interfaces";
 
@@ -15,8 +16,12 @@ export class Notes {
         );
     }
 
-    addNote(note: NotesDataType) {
-        return this.db.table("note").put(note);
+    async addNote(note: NotesDataType, addedNoteId: number | undefined): Promise<number | IndexableType> {
+        if (addedNoteId === undefined) {
+            return this.db.table("note").put(note, addedNoteId);   
+        } else {
+            return this.db.table("note").update(addedNoteId, note).then(() => addedNoteId);
+        }
     }
 
     getAllNotes() {

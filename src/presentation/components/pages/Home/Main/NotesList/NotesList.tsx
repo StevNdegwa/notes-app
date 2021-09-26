@@ -20,9 +20,9 @@ export const NotesList: FC<NotesListProps> = ({ width }) => {
 
   return (
     <NotesListWrapper animate={{ x: [-200, 0] }} style={{ width }}>
-      {notes.map(({ content, id }) => {
+      {notes.map(({ content, id }, index) => {
         return (
-          <Note key={id}>
+          <Note key={index}>
             {content.blocks.map((block: OutputBlockData, index: number) => {
               return render(block, index);
             })}
