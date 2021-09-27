@@ -11,7 +11,7 @@ export const Main = () => {
   const [showing, setShowing] = useState<ShowType>("LIST");
   const content = useRef<HTMLDivElement | null>(null);
   const slides = useRef<HTMLDivElement | null>(null);
-  const { isOpen, closeModal, toggleModal } = useModal({ isOpen: true });
+  const { isOpen, closeModal, openModal } = useModal({ isOpen: false });
 
   const { width, wrapperWidth } = useMemo<{
     width: number;
@@ -30,12 +30,12 @@ export const Main = () => {
 
   const moveToList = useCallback(() => {
     setShowing("LIST");
-  }, []);
+    openModal();
+  }, [openModal]);
 
   const moveToEditor = useCallback(() => {
     setShowing("EDITOR");
-    toggleModal();
-  }, [toggleModal]);
+  }, []);
 
   useEffect(() => {
     if (content.current) {

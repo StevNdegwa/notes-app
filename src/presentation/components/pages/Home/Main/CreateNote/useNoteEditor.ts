@@ -117,5 +117,4 @@ export default function useNoteEditor(data: any) {
   }, [editor, setNotifications]);
 
   return { editor, handleClear, saveNote, canSave };
-
 }

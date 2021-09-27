@@ -1,5 +1,5 @@
 import { useCallback, FC } from "react";
-import { FaSave, FaTimesCircle } from "react-icons/fa";
+import { FaSave, FaTimesCircle, FaBook, FaBookOpen } from "react-icons/fa";
 import { Button, Modal } from "../../../../common";
 import useNoteEditor from "./useNoteEditor";
 import {
@@ -44,12 +44,12 @@ export const CreateNote: FC<CreateNoteProps> = ({ data, width, modal: { isOpen, 
       </CreateNoteActions>
       <Modal isOpen={isOpen} closeModal={closeModal} isFullScreen={false}>
         <ContinueNew>
-          <Button primary onClick={closeModal}>
+          <Button primary onClick={closeModal} leftIcon={FaBookOpen}>
             Continue editing
           </Button>
-          <Button primary onClick={startNewNote}>
+          <Button primary onClick={startNewNote} leftIcon={FaBook}>
             {" "}
-            New note
+            Start new note
           </Button>
         </ContinueNew>
       </Modal>
