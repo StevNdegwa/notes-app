@@ -1,6 +1,7 @@
 import { useCallback, FC } from "react";
 import { FaSave, FaTimesCircle, FaBook, FaBookOpen } from "react-icons/fa";
 import { Button, Modal } from "../../../../common";
+import { NotesDataType } from "../../../../../../application";
 import useNoteEditor from "./useNoteEditor";
 import {
   CreateNoteWrapper,
@@ -10,21 +11,29 @@ import {
 } from "./styles";
 
 export interface CreateNoteProps {
-  data?: any;
+  data?: NotesDataType;
   width: string;
   modal: {
     isOpen: boolean;
     closeModal: () => void;
-  }
+  };
 }
 
-export const CreateNote: FC<CreateNoteProps> = ({ data, width, modal: { isOpen, closeModal } }) => {
-  const { canSave, handleClear, saveNote } = useNoteEditor(data);
+export const CreateNote: FC<CreateNoteProps> = ({
+  data,
+  width,
+  modal: { isOpen, closeModal },
+}) => {
+  const { canSave, handleClear, saveNote } = useNoteEditor(data?.content);
 
   const startNewNote = useCallback(() => {
-    handleClear()
+    handleClear();
     closeModal();
   }, [closeModal, handleClear]);
+
+  const noop = useCallback(() => {
+    return;
+  }, []);
 
   return (
     <CreateNoteWrapper style={{ width }}>
@@ -42,12 +51,12 @@ export const CreateNote: FC<CreateNoteProps> = ({ data, width, modal: { isOpen, 
           Save
         </Button>
       </CreateNoteActions>
-      <Modal isOpen={isOpen} closeModal={closeModal} isFullScreen={false}>
+      <Modal isOpen={isOpen} closeModal={noop} isFullScreen={false}>
         <ContinueNew>
           <Button primary onClick={closeModal} leftIcon={FaBookOpen}>
             Continue editing
           </Button>
-          <Button primary onClick={startNewNote} leftIcon={FaBook}>
+          <Button onClick={startNewNote} leftIcon={FaBook}>
             {" "}
             Start new note
           </Button>

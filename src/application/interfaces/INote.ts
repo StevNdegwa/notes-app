@@ -4,4 +4,6 @@ export interface INote {
     lastEdited: Date;
     workspace: string;
     content: any;
+    starred: boolean;
+    pinned: boolean;
 }

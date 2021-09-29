@@ -56,6 +56,8 @@ export default function useNoteEditor(data: any) {
             lastEdited: new Date(),
             workspace: currentWorkspace.wsRef,
             content: JSON.stringify(content),
+            starred: false,
+            pinned: false,
           }, addedNoteId).then((id) => {
             setAddedNoteId(id as number);
           })
@@ -69,6 +71,8 @@ export default function useNoteEditor(data: any) {
                   lastEdited: new Date(),
                   workspace: currentWorkspace.wsRef,
                   content,
+                  starred: false,
+                  pinned: false,
                 },
               ]
             } else {
@@ -79,6 +83,8 @@ export default function useNoteEditor(data: any) {
                 lastEdited: new Date(),
                 workspace: currentWorkspace.wsRef,
                 content,
+                starred: false,
+                pinned: false,
               }
 
               return n;
