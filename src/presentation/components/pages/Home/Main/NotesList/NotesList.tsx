@@ -23,7 +23,16 @@ export const NotesList: FC<NotesListProps> = ({ width, moveToEditor }) => {
       ) : (
         <EmptyNotesList>
           <div>
-            <p>Oops! No notes to show</p>
+            <p>
+              <lottie-player
+                src="https://assets7.lottiefiles.com/datafiles/vhvOcuUkH41HdrL/data.json"
+                background="transparent"
+                speed="1"
+                style={{ width: "200px", height: "200px" }}
+                loop
+                autoplay
+              ></lottie-player>
+            </p>
             <div>
               <Button leftIcon={FaPlus} primary onClick={moveToEditor}>
                 Create your first note

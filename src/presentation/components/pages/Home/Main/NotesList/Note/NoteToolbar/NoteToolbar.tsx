@@ -39,7 +39,7 @@ export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
         {pinned ? <FaThumbtack /> : <FaThumbtack color="lightgrey" />}
       </Button>
       <Button transparent onClick={toggleStarred}>
-        {starred ? <FaStar color="yellow" /> : <FaStar color="lightgray" />}
+        {starred ? <FaStar color="#FDD835" /> : <FaStar color="lightgray" />}
       </Button>
       <Button transparent onClick={editNote}>
         <FaEdit />
