@@ -18,3 +18,4 @@ export * from "./NewSelect";
 export * from "./CircularReveal";
 export * from "./Notifications";
 export * from "./ContentEditor";
+export * from "./PageLoader";

@@ -25,7 +25,7 @@ import { Main } from "./Main";
 
 import { loadVariant } from "./framer";
 
-export const Home = () => {
+const Home = () => {
   const currentWorkSpace = useRecoilValue(currentWorkSpaceAtom);
   const [logout, setLogout] = useState<boolean>(false);
   const { openModal, isOpen, closeModal } = useModal();
@@ -97,3 +97,5 @@ export const Home = () => {
     </HomeWrapper>
   );
 };
+
+export default Home;

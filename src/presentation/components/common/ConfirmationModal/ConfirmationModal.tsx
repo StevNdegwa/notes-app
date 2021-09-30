@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { FaTimes } from "react-icons/fa";
-import { Button, Modal } from "../";
+import { Button } from "../Button";
+import { Modal } from "../Modal";
 import { ConfirmationModalWrapper, Header, Main, Footer } from "./styles";
 
 export interface ConfirmationModalProps {
@@ -27,9 +27,6 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
       <ConfirmationModalWrapper>
         <Header>
           <div>{title}</div>
-          <Button transparent onClick={cancelAction}>
-            <FaTimes />
-          </Button>
         </Header>
         <Main>{mainText}</Main>
         <Footer>
