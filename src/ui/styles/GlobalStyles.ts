@@ -13,18 +13,19 @@ WebFont.load({
 
 
 export const GlobalStyle = createGlobalStyle`
+${({ theme }: { theme: ThemeType }) => css`
   *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     transition: background-color 200ms, color 100ms;
+    scrollbar-width:thin;
+    scrollbar-color: ${theme.colors.grey[4]};
   }
   body {
-    ${({ theme }: { theme: ThemeType }) => css`
     font: normal 300 16px ${theme.fontFamilies.main};
     background-color:${theme.colors.light};
     color: ${theme.colors.dark};
-    `};
   }
   html,
   body {
@@ -47,4 +48,15 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration:none;
     color:inherit;
   }
+  ::-webkit-scrollbar{
+    width:5px;
+    background:transparent;
+  } 
+  ::-webkit-scrollbar-track{
+    border-radius:10px;
+  }
+  ::-webkit-scrollbar-thumb{
+    background:${theme.colors.grey[4]};
+  }
+`};
 `;

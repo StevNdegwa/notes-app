@@ -37,6 +37,7 @@ width:100%;
 background-color:${theme.body.backgroundColor};
 color:${theme.body.color};
 border-radius:${theme.borderRadius["xl"]};
+overflow: hidden;
 @media only screen and (min-width: 730px){
     height:auto;
     width:fit-content;
