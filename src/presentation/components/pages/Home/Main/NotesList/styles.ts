@@ -31,3 +31,17 @@ height:4rem;
     margin:1rem;
 }
 `;
+
+export const EmptyNotesList = styled.li`
+width: 100%;
+height: 100%;
+display: flex;
+justify-content:center;
+align-items: center;
+text-align:center;
+& p{
+    line-height: 2;
+    font-size: 1.2rem;
+    font-style:italic;
+}
+`

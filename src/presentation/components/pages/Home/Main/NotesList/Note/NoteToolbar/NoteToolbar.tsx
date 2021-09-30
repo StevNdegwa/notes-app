@@ -1,6 +1,6 @@
 import { FC, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { FaEdit, FaStar, FaThumbtack } from "react-icons/fa";
+import { FaEdit, FaStar, FaThumbtack, FaTrash } from "react-icons/fa";
 import {
   useNotes,
   notesAtom,
@@ -43,6 +43,9 @@ export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
       </Button>
       <Button transparent onClick={editNote}>
         <FaEdit />
+      </Button>
+      <Button transparent>
+        <FaTrash />
       </Button>
       {isOpen && <NoteEditor modal={{ isOpen, closeModal }} note={note} />}
     </NoteToolbarWrapper>

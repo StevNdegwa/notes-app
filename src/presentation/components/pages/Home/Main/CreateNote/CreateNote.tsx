@@ -55,36 +55,37 @@ export const CreateNote: FC<CreateNoteProps> = ({
             )
             .then((id) => {
               setAddedNoteId(id as number);
+              setNotes((notes) => {
+                if (addedNoteId === undefined) {
+                  return [
+                    ...notes,
+                    {
+                      id,
+                      created: new Date(),
+                      lastEdited: new Date(),
+                      workspace: currentWorkspace.wsRef,
+                      content: note,
+                      starred: false,
+                      pinned: false,
+                    },
+                  ];
+                } else {
+                  let n = [...notes];
+
+                  n[n.length - 1] = {
+                    id,
+                    created: new Date(),
+                    lastEdited: new Date(),
+                    workspace: currentWorkspace.wsRef,
+                    content: note,
+                    starred: false,
+                    pinned: false,
+                  };
+
+                  return n;
+                }
+              });
             });
-
-          setNotes((notes) => {
-            if (addedNoteId === undefined) {
-              return [
-                ...notes,
-                {
-                  created: new Date(),
-                  lastEdited: new Date(),
-                  workspace: currentWorkspace.wsRef,
-                  content: note,
-                  starred: false,
-                  pinned: false,
-                },
-              ];
-            } else {
-              let n = [...notes];
-
-              n[n.length - 1] = {
-                created: new Date(),
-                lastEdited: new Date(),
-                workspace: currentWorkspace.wsRef,
-                content: note,
-                starred: false,
-                pinned: false,
-              };
-
-              return n;
-            }
-          });
           resolve(true);
         } else {
           reject();

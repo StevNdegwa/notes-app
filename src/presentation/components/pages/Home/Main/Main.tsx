@@ -74,7 +74,7 @@ export const Main = () => {
             height: "100%",
           }}
         >
-          <NotesList width={`${width}px`} />
+          <NotesList width={`${width}px`} moveToEditor={moveToEditor} />
           <CreateNote width={`${width}px`} modal={{ isOpen, closeModal }} />
         </div>
       </MainContent>
