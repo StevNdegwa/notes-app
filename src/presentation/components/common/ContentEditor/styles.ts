@@ -8,6 +8,7 @@ height:100%;
 export const EditorContainer = styled.div`
 width:100%;
 height: calc(100% - 4rem);
+overflow: auto;
 `;
 
 export const ContentEditorActions = styled.div`

@@ -16,7 +16,7 @@ import {
 import { useModal, ConfirmationModal, CircularReveal } from "../../common";
 import {
   currentWorkSpaceAtom,
-  Notes,
+  useNotes,
   notesAtom,
 } from "../../../../application";
 import AppContext from "../../../../AppContext";
@@ -32,6 +32,7 @@ export const Home = () => {
   const appContext = useContext(AppContext);
   const theme = useTheme();
   const setNotes = useSetRecoilState(notesAtom);
+  const notes = useNotes();
 
   const handleThemeToggleClick = useCallback(
     () => appContext.toggleLightDark?.(),
@@ -46,14 +47,13 @@ export const Home = () => {
   useEffect(() => {
     async function setNotesFn() {
       if (currentWorkSpace?.wsRef) {
-        let notes = await new Notes().getWorkspaceNotes(currentWorkSpace.wsRef);
-
-        setNotes(notes || []);
+        let n = await notes?.getWorkspaceNotes(currentWorkSpace.wsRef);
+        setNotes(n || []);
       }
     }
 
     setNotesFn();
-  }, [currentWorkSpace, setNotes]);
+  }, [currentWorkSpace, notes, setNotes]);
 
   if (!currentWorkSpace || logout) {
     return <Redirect to="/?login=true" />;

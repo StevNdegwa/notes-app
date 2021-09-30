@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import {
-  Notes,
+  useNotes,
   notesAtom,
   NotesDataType,
 } from "../../../../../../../../../application";
@@ -23,11 +23,11 @@ export const NoteEditor: FC<NoteEditorProps> = ({
   note,
 }) => {
   const setNotes = useSetRecoilState(notesAtom);
+  const notes = useNotes();
 
   const editNote = useCallback(
     (content: any) => {
-      new Notes()
-        .addNote(
+      notes?.addNote(
           {
             ...note,
             lastEdited: new Date(),
@@ -43,7 +43,7 @@ export const NoteEditor: FC<NoteEditorProps> = ({
           });
         });
     },
-    [note, setNotes]
+    [note, notes, setNotes]
   );
 
   const cancleEdit = useCallback(() => {

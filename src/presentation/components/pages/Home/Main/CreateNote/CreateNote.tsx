@@ -11,7 +11,7 @@ import {
   NotesDataType,
   notesAtom,
   currentWorkSpaceAtom,
-  Notes,
+  useNotes,
   notificationsAtom,
 } from "../../../../../../application";
 import { FeedbackTypes } from "../../../../../../shared";
@@ -35,13 +35,14 @@ export const CreateNote: FC<CreateNoteProps> = ({
   const setNotes = useSetRecoilState(notesAtom);
   const [addedNoteId, setAddedNoteId] = useState<undefined | number>(undefined);
   const setNotifications = useSetRecoilState(notificationsAtom);
+  const notes = useNotes();
 
   const createNewNote = useCallback(
     (note: any) => {
       return new Promise((resolve, reject) => {
         if (currentWorkspace?.wsRef) {
-          new Notes()
-            .addNote(
+          notes
+            ?.addNote(
               {
                 created: new Date(),
                 lastEdited: new Date(),
@@ -110,7 +111,7 @@ export const CreateNote: FC<CreateNoteProps> = ({
           ]);
         });
     },
-    [addedNoteId, currentWorkspace?.wsRef, setNotes, setNotifications]
+    [addedNoteId, currentWorkspace?.wsRef, notes, setNotes, setNotifications]
   );
 
   const clearNote = useCallback(() => {
@@ -129,7 +130,7 @@ export const CreateNote: FC<CreateNoteProps> = ({
     "create_note",
     createNewNote,
     clearNote,
-    data?.content,
+    data?.content
   );
 
   const startNewNote = useCallback(() => {

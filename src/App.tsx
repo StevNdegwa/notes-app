@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { RecoilRoot } from "recoil";
 import { light, ThemeMode } from "./ui/theme";
 import useTheme from "./utils/useTheme";
-import { Application, IAppData, defaultAppData } from "./application";
+import { Application, IAppData, defaultAppData, NotesProvider } from "./application";
 import { GlobalStyle } from "./ui/styles/GlobalStyles";
 import {
   Welcome,
@@ -46,31 +46,33 @@ export default function App() {
         toggleLightDark,
       }}
     >
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <RecoilRoot>
-          <Notifications />
-          <Router>
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/application-settings" component={AppSettings} />
-              <Route path="/create-workspace" component={CreateWorkspace} />
-              <Route
-                path="/"
-                render={({ location: { search } }) => {
-                  return (
-                    <Welcome
-                      toLogin={
-                        new URLSearchParams(search).get("login") === "true"
-                      }
-                    />
-                  );
-                }}
-              />
-            </Switch>
-          </Router>
-        </RecoilRoot>
-      </ThemeProvider>
+      <NotesProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <RecoilRoot>
+            <Notifications />
+            <Router>
+              <Switch>
+                <Route path="/home" component={Home} />
+                <Route path="/application-settings" component={AppSettings} />
+                <Route path="/create-workspace" component={CreateWorkspace} />
+                <Route
+                  path="/"
+                  render={({ location: { search } }) => {
+                    return (
+                      <Welcome
+                        toLogin={
+                          new URLSearchParams(search).get("login") === "true"
+                        }
+                      />
+                    );
+                  }}
+                />
+              </Switch>
+            </Router>
+          </RecoilRoot>
+        </ThemeProvider>
+      </NotesProvider>
     </AppContext.Provider>
   );
 }

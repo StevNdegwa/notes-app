@@ -2,7 +2,7 @@ import { FC, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { FaEdit, FaStar, FaThumbtack } from "react-icons/fa";
 import {
-  Notes,
+  useNotes,
   notesAtom,
   NotesDataType,
 } from "../../../../../../../../application";
@@ -17,16 +17,17 @@ export interface NoteToolbarProps {
 export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
   const { id, starred, pinned } = note;
   const updateNote = useSetRecoilState(notesAtom);
+  const notes = useNotes();
   const { isOpen, closeModal, openModal } = useModal();
 
   const toggleStarred = useCallback(() => {
-    new Notes().toggleNoteStarred(parseInt(`${id}`) || 0);
+    notes?.toggleNoteStarred(parseInt(`${id}`) || 0);
     updateNote((notes) =>
       [...notes].map((note) =>
         note.id === id ? { ...note, starred: !note.starred } : note
       )
     );
-  }, [id, updateNote]);
+  }, [id, notes, updateNote]);
 
   const editNote = useCallback(() => {
     openModal();
