@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { FaPlus, FaArrowAltCircleLeft } from "react-icons/fa";
-import { NotesDataType } from "../../../../../application";
 import { Button, Tooltip, TooltipPosition, useModal } from "../../../common";
 import { MainWrapper, MainToolbar, MainContent } from "./styles";
 import { CreateNote } from "./CreateNote";
@@ -10,9 +9,6 @@ export type ShowType = "LIST" | "EDITOR" | "VIEW";
 
 export const Main = () => {
   const [showing, setShowing] = useState<ShowType>("LIST");
-  const [editNote, setEditNote] = useState<NotesDataType | undefined>(
-    undefined
-  );
   const content = useRef<HTMLDivElement | null>(null);
   const slides = useRef<HTMLDivElement | null>(null);
   const { isOpen, closeModal, openModal } = useModal({ isOpen: false });
@@ -38,11 +34,6 @@ export const Main = () => {
   }, [openModal]);
 
   const moveToEditor = useCallback(() => {
-    setShowing("EDITOR");
-  }, []);
-
-  const startEditingNote = useCallback((note: NotesDataType) => {
-    setEditNote(note);
     setShowing("EDITOR");
   }, []);
 
@@ -83,12 +74,8 @@ export const Main = () => {
             height: "100%",
           }}
         >
-          <NotesList width={`${width}px`} setEditNote={startEditingNote} />
-          <CreateNote
-            width={`${width}px`}
-            modal={{ isOpen, closeModal }}
-            data={editNote}
-          />
+          <NotesList width={`${width}px`} />
+          <CreateNote width={`${width}px`} modal={{ isOpen, closeModal }} />
         </div>
       </MainContent>
     </MainWrapper>

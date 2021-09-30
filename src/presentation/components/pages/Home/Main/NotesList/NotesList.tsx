@@ -6,16 +6,15 @@ import { NotesListWrapper } from "./styles";
 
 export interface NotesListProps {
   width: string;
-  setEditNote: (note: NotesDataType) => void;
 }
 
-export const NotesList: FC<NotesListProps> = ({ width, setEditNote }) => {
+export const NotesList: FC<NotesListProps> = ({ width }) => {
   const notes = useRecoilValue(notesAtom);
 
   return (
     <NotesListWrapper animate={{ x: [-200, 0] }} style={{ width }}>
       {notes.map((note: NotesDataType, index) => (
-        <Note key={index} note={note} setEditNote={setEditNote} />
+        <Note key={index} note={note} />
       ))}
     </NotesListWrapper>
   );

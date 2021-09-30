@@ -1,23 +1,17 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import { OutputBlockData } from "@editorjs/editorjs";
+import { NotesDataType } from "../../../../../../../application";
 import render from "./render";
 import { NoteToolbar } from "./NoteToolbar";
 import { NoteWrapper, NoteContent } from "./styles";
-import { NotesDataType } from "../../../../../../../application";
-
 export interface NoteProps {
   note: NotesDataType;
-  setEditNote: (note: NotesDataType) => void;
 }
 
-export const Note: FC<NoteProps> = ({ note, setEditNote }) => {
-  const editNote = useCallback(() => {
-    setEditNote(note);
-  }, [setEditNote, note]);
-
+export const Note: FC<NoteProps> = ({ note }) => {
   return (
     <NoteWrapper>
-      <NoteToolbar editNote={editNote} noteId={note.id} starred={note.starred} />
+      <NoteToolbar note={note} />
       <NoteContent>
         {note.content.blocks.map((block: OutputBlockData, index: number) =>
           render(block, index)

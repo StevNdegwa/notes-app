@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
+import { Button } from "../Button";
 import { ThemeType } from "../../../../ui/theme";
 
 export const ModalWrapper = styled(motion.div)`
@@ -28,20 +29,28 @@ background-color:hsla(234, 29%, 26%, 0.6);
 `;
 
 export const Content = styled(motion.div)`
+${({ theme }: { theme: ThemeType }) => css`
 display:inline-block;
 position:relative;
 height:fit-content;
 width:100%;
-${({ theme }: { theme: ThemeType }) => css`
 background-color:${theme.body.backgroundColor};
 color:${theme.body.color};
 border-radius:${theme.borderRadius["xl"]};
-`}
 @media only screen and (min-width: 730px){
     height:auto;
     width:fit-content;
-    ${({ theme }: { theme: ThemeType }) => css`
     box-shadow:0px 0px 15px ${theme.colors.grey[6]};
-    `}
 }
+`}
+`;
+
+export const CloseModal = styled(Button)`
+${({ theme }: { theme: ThemeType }) => css`
+position:absolute;
+right: 5px;
+top:5px;
+font-size: 1.2rem;
+z-index:${theme.zIndices.modal};
+`}
 `;
