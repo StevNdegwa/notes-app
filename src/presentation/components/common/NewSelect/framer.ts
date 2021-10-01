@@ -9,7 +9,7 @@ export const openVariants = {
     },
     menu: {
         open: {
-            height: "fit-content"
+            height: "auto",
         },
         close: {
             height: "0px"
