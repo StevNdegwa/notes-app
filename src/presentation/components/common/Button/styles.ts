@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { ThemeType } from "../../../../ui/theme";
 
 export const Wrapper = styled.button`
+  ${({ transparent, theme, primary, secondary }: { theme: ThemeType; transparent: boolean; primary: boolean; secondary: boolean; }) => css`
   display: inline-flex;
   background-color:hsla(0, 0%, 85%, 1);
   font-weight:500;
@@ -29,22 +30,24 @@ export const Wrapper = styled.button`
     width: 30px;
     background-color:transparent;
   }
-  ${({ transparent, theme, primary, secondary }: { theme: ThemeType; transparent: boolean; primary: boolean; secondary:boolean; }) => css`
-    height: ${theme.space[10]};
-    font-weight:600;
-    border-radius:${theme.borderRadius.sm};
+  height: ${theme.space[10]};
+  font-weight:600;
+  border-radius:${theme.borderRadius.sm};
     
-    ${transparent && css`
-      background-color:${theme.colors.transparent};
-      color:${theme.button.backgroundColor};
-    `}
-    ${primary && css`
-      background-color:${theme.button.backgroundColor};
-      color:${theme.button.color};
-    `}
-    ${secondary && css`
-      background-color:${theme.colors.secondary[5]};
-      color:${theme.button.color};
-    `}
+  ${transparent && css`
+    background-color:${theme.colors.transparent};
+    color:${theme.button.backgroundColor};
   `}
+  ${primary && css`
+    background-color:${theme.button.backgroundColor};
+    color:${theme.button.color};
+  `}
+  ${secondary && css`
+    background-color:${theme.colors.secondary[5]};
+    color:${theme.button.color};
+  `}
+  &:disabled{
+    color:${theme.colors.grey[1]}; 
+  }
+`}
 `;

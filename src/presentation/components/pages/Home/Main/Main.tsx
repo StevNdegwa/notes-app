@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { FaPlus, FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaPlus, FaArrowAltCircleLeft, FaStar } from "react-icons/fa";
+import { useRecoilState } from "recoil";
 import { Button, Tooltip, TooltipPosition, useModal } from "../../../common";
+import { listFilterAtom } from "../../../../../application";
 import { MainWrapper, MainToolbar, MainContent } from "./styles";
 import { CreateNote } from "./CreateNote";
 import { NotesList } from "./NotesList";
@@ -12,6 +14,7 @@ export const Main = () => {
   const content = useRef<HTMLDivElement | null>(null);
   const slides = useRef<HTMLDivElement | null>(null);
   const { isOpen, closeModal, openModal } = useModal({ isOpen: false });
+  const [listFIlter, setListFilter] = useRecoilState(listFilterAtom);
 
   const { width, wrapperWidth } = useMemo<{
     width: number;
@@ -27,6 +30,10 @@ export const Main = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content.current]);
+
+  const toggleStarredFilter = useCallback(() => {
+    setListFilter((filter) => (filter !== "STARRED" ? "STARRED" : "NORMAL"));
+  }, [setListFilter]);
 
   const moveToList = useCallback(() => {
     setShowing("LIST");
@@ -51,6 +58,16 @@ export const Main = () => {
   return (
     <MainWrapper>
       <MainToolbar>
+        <Tooltip content="Filter starred" position={TooltipPosition.LEFT}>
+          <Button
+            transparent={listFIlter !== "STARRED"}
+            primary={listFIlter === "STARRED"}
+            disabled={showing !== "LIST"}
+            onClick={toggleStarredFilter}
+          >
+            <FaStar />
+          </Button>
+        </Tooltip>
         {showing === "EDITOR" && (
           <Tooltip content="Go back" position={TooltipPosition.LEFT}>
             <Button primary onClick={moveToList}>

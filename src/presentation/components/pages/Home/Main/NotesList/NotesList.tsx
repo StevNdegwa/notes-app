@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useRecoilValue } from "recoil";
-import { notesAtom, NotesDataType } from "../../../../../../application";
+import { NotesDataType, activeNotesList } from "../../../../../../application";
 import { Note } from "./Note";
 import { Button } from "../../../../common";
 import { NotesListWrapper, EmptyNotesList } from "./styles";
@@ -12,7 +12,7 @@ export interface NotesListProps {
 }
 
 export const NotesList: FC<NotesListProps> = ({ width, moveToEditor }) => {
-  const notes = useRecoilValue(notesAtom);
+  const notes = useRecoilValue(activeNotesList);
 
   return (
     <NotesListWrapper animate={{ x: [-200, 0] }} style={{ width }}>

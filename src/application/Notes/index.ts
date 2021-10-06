@@ -20,19 +20,21 @@ export class Notes {
         if (addedNoteId === undefined) {
             return this.db.table("note").put(note, addedNoteId);
         } else {
-            return this.db.table("note").update(addedNoteId, note).then(() => addedNoteId);
+            await this.db.table("note").update(addedNoteId, note);
+            return addedNoteId;
         }
     }
 
-    getAllNotes() {
+    async getAllNotes(): Promise<any> {
         return this.db.table("note").toArray()
     }
 
-    getWorkspaceNotes(workspace: string) {
-        return this.db.table("note").where({ workspace }).toArray().then((notes) => notes.map((note) => ({ ...note, content: JSON.parse(note.content) })));
+    async getWorkspaceNotes(workspace: string): Promise<any> {
+        const notes = await this.db.table("note").where({ workspace }).toArray();
+        return notes.map((note) => ({ ...note, content: JSON.parse(note.content) }));
     }
 
-    async toggleNoteStarred(noteId: number) {
-        return this.db.table("note").where("id").equals(noteId).first().then((note) => this.db.table("note").update(noteId, { starred: !note.starred }));
+    async updateNote(noteId: number, update: Partial<NotesDataType>) {
+        return this.db.table("note").update(noteId, update);
     }
 }

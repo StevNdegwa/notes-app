@@ -21,13 +21,22 @@ export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
   const { isOpen, closeModal, openModal } = useModal();
 
   const toggleStarred = useCallback(() => {
-    notes?.toggleNoteStarred(parseInt(`${id}`) || 0);
+    notes?.updateNote(id as number, { starred: !starred })
     updateNote((notes) =>
       [...notes].map((note) =>
         note.id === id ? { ...note, starred: !note.starred } : note
       )
     );
-  }, [id, notes, updateNote]);
+  }, [id, notes, starred, updateNote]);
+
+  const togglePinned = useCallback(() => {
+    notes?.updateNote(id as number, { pinned: !pinned });
+    updateNote((notes) =>
+      [...notes].map((note) =>
+        note.id === id ? { ...note, pinned: !note.pinned } : note
+      )
+    );
+  }, [id, notes, pinned, updateNote]);
 
   const editNote = useCallback(() => {
     openModal();
@@ -35,7 +44,7 @@ export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
 
   return (
     <NoteToolbarWrapper>
-      <Button transparent>
+      <Button transparent onClick={togglePinned}>
         {pinned ? <FaThumbtack /> : <FaThumbtack color="lightgrey" />}
       </Button>
       <Button transparent onClick={toggleStarred}>
