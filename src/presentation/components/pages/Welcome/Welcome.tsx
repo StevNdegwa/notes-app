@@ -1,5 +1,6 @@
 import { useState, useContext, FC } from "react";
 import { FaChevronCircleRight } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 import AppContext from "../../../../AppContext";
 import {
   WelcomeAside,
@@ -10,12 +11,11 @@ import {
 import { WelcomeAds } from "./WelcomeAds";
 import { WelcomeX } from "./WelcomeX";
 
-export interface WelcomeProps {
-  toLogin?: boolean;
-}
-
-export const Welcome: FC<WelcomeProps> = ({ toLogin }) => {
-  const [loginOpen, setLoginOpen] = useState<boolean>(!!toLogin);
+export const Welcome: FC = () => {
+  const { search } = useLocation();
+  const [loginOpen, setLoginOpen] = useState<boolean>(
+    new URLSearchParams(search).get("login") === "true"
+  );
   let application = useContext(AppContext);
 
   return (

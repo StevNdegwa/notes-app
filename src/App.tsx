@@ -66,18 +66,7 @@ export default function App() {
                 </Route>
                 <Route path="/application-settings" component={AppSettings} />
                 <Route path="/create-workspace" component={CreateWorkspace} />
-                <Route
-                  path="/"
-                  render={({ location: { search } }) => {
-                    return (
-                      <Welcome
-                        toLogin={
-                          new URLSearchParams(search).get("login") === "true"
-                        }
-                      />
-                    );
-                  }}
-                />
+                <Route path="/" component={Welcome} />
               </Switch>
             </Router>
           </RecoilRoot>
