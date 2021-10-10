@@ -64,8 +64,16 @@ export default function App() {
                     <Home />
                   </Suspense>
                 </Route>
-                <Route path="/application-settings" component={AppSettings} />
-                <Route path="/create-workspace" component={CreateWorkspace} />
+                <Route path="/application-settings">
+                  <Suspense fallback={<PageLoader />}>
+                    <AppSettings />
+                  </Suspense>
+                </Route>
+                <Route path="/create-workspace">
+                  <Suspense fallback={<PageLoader />}>
+                    <CreateWorkspace />
+                  </Suspense>
+                </Route>
                 <Route path="/" component={Welcome} />
               </Switch>
             </Router>

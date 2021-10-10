@@ -19,3 +19,4 @@ export * from "./CircularReveal";
 export * from "./Notifications";
 export * from "./ContentEditor";
 export * from "./PageLoader";
+export * from "./Checkbox";

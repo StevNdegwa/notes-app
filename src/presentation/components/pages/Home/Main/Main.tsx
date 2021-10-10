@@ -1,7 +1,13 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { FaPlus, FaArrowAltCircleLeft, FaStar } from "react-icons/fa";
+import { FaPlus, FaArrowAltCircleLeft } from "react-icons/fa";
 import { useRecoilState } from "recoil";
-import { Button, Tooltip, TooltipPosition, useModal } from "../../../common";
+import {
+  Button,
+  Tooltip,
+  TooltipPosition,
+  useModal,
+  Checkbox,
+} from "../../../common";
 import { listFilterAtom } from "../../../../../application";
 import { MainWrapper, MainToolbar, MainContent } from "./styles";
 import { CreateNote } from "./CreateNote";
@@ -58,30 +64,31 @@ export const Main = () => {
   return (
     <MainWrapper>
       <MainToolbar>
-        <Tooltip content="Filter starred" position={TooltipPosition.LEFT}>
-          <Button
-            transparent={listFIlter !== "STARRED"}
-            primary={listFIlter === "STARRED"}
+        <span>
+          <Checkbox
+            onChange={toggleStarredFilter}
+            checked={listFIlter === "STARRED"}
             disabled={showing !== "LIST"}
-            onClick={toggleStarredFilter}
           >
-            <FaStar />
-          </Button>
-        </Tooltip>
-        {showing === "EDITOR" && (
-          <Tooltip content="Go back" position={TooltipPosition.LEFT}>
-            <Button primary onClick={moveToList}>
-              <FaArrowAltCircleLeft />
-            </Button>
-          </Tooltip>
-        )}
-        {showing === "LIST" && (
-          <Tooltip content="Add a note" position={TooltipPosition.LEFT}>
-            <Button primary onClick={moveToEditor}>
-              <FaPlus />
-            </Button>
-          </Tooltip>
-        )}
+            Starred
+          </Checkbox>
+        </span>
+        <span>
+          {showing === "EDITOR" && (
+            <Tooltip content="Go back" position={TooltipPosition.LEFT}>
+              <Button primary onClick={moveToList}>
+                <FaArrowAltCircleLeft />
+              </Button>
+            </Tooltip>
+          )}
+          {showing === "LIST" && (
+            <Tooltip content="Add a note" position={TooltipPosition.LEFT}>
+              <Button primary onClick={moveToEditor}>
+                <FaPlus />
+              </Button>
+            </Tooltip>
+          )}
+        </span>
       </MainToolbar>
       <MainContent ref={content}>
         <div

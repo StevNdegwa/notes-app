@@ -10,10 +10,11 @@ overflow:hidden;
 export const MainToolbar = styled.div`
 ${({ theme }: { theme: ThemeType }) => css`
 width:100%;
-padding:0 3rem;
+padding:0 2rem;
 height:3.5rem;
 display:flex;
-justify-content:flex-end;
+justify-content:space-between;
+align-items:center;
 & button{
     width:2.5rem;
     height:2.5rem;  
