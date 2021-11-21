@@ -10,7 +10,7 @@ overflow:hidden;
 export const MainToolbar = styled.div`
 ${({ theme }: { theme: ThemeType }) => css`
 width:100%;
-padding:0 2rem;
+padding:0 ${theme.space[6]};
 height:3.5rem;
 display:flex;
 justify-content:space-between;

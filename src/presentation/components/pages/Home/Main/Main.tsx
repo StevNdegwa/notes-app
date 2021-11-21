@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { FaPlus, FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaRegEdit } from "react-icons/fa";
 import { useRecoilState } from "recoil";
 import {
   Button,
@@ -84,7 +84,7 @@ export const Main = () => {
           {showing === "LIST" && (
             <Tooltip content="Add a note" position={TooltipPosition.LEFT}>
               <Button primary onClick={moveToEditor}>
-                <FaPlus />
+                <FaRegEdit />
               </Button>
             </Tooltip>
           )}

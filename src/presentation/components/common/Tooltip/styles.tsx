@@ -8,6 +8,7 @@ export const TooltipContent = styled.div`
   font-size: 0.8rem;
   white-space: nowrap;
   top: 25%;
+  user-select:none;
   &::before {
     content:" ";
     position: absolute;

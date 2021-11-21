@@ -4,6 +4,7 @@ import { Button } from "../Button";
 import { ThemeType } from "../../../../ui/theme";
 
 export const ModalWrapper = styled(motion.div)`
+${({ theme }: { theme: ThemeType }) => css`
 position:absolute;
 top:0;
 left:0;
@@ -11,12 +12,11 @@ height:100%;
 width:100%;
 display:none;
 justify-content:center;
-${({ theme }: { theme: ThemeType }) => css`
 z-index:${theme.zIndices.modal};
-`}
 @media only screen and (min-width: 730px){
     align-items:center;
 }
+`}
 `;
 
 export const Overlay = styled(motion.div)`
