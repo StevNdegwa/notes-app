@@ -1,5 +1,13 @@
 import { FC } from "react";
-import { Modal } from "../../../common";
+import ReactCalendar from "react-calendar";
+import {
+  FaAngleRight,
+  FaAngleLeft,
+  FaAngleDoubleLeft,
+  FaAngleDoubleRight,
+} from "react-icons/fa";
+import { Modal, Button } from "../../../common";
+import { ReactCalendarContainer } from "./styles";
 
 export interface CalendarProps {
   closeCalendar: () => void;
@@ -8,9 +16,29 @@ export interface CalendarProps {
 
 export const Calendar: FC<CalendarProps> = ({ closeCalendar, calendarOpen }) => {
 
+  const nextLabel = <Button transparent><FaAngleRight/></Button>;
+  const next2Label = (
+    <Button transparent>
+      <FaAngleDoubleRight />
+    </Button>
+  );
+  const prevLabel = <Button transparent><FaAngleLeft/></Button>;
+  const prev2Label = (
+    <Button transparent>
+      <FaAngleDoubleLeft />
+    </Button>
+  );
+
   return (
     <Modal isOpen={calendarOpen} closeModal={closeCalendar}>
-      Calendar
+      <ReactCalendarContainer>
+        <ReactCalendar
+          nextLabel={nextLabel}
+          next2Label={next2Label}
+          prevLabel={prevLabel}
+          prev2Label={prev2Label}
+        />
+      </ReactCalendarContainer>
     </Modal>
   );
 };
