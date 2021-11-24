@@ -34,7 +34,7 @@ height:calc(100% - 4.5rem);
 overflow:hidden;
 margin:0.5rem;
 border-radius: ${theme.borderRadius.md};
-box-shadow: 0px 0px 2px ${theme.colors.grey[5]};
+box-shadow: 0px 0px 5px ${theme.colors.grey[3]};
 max-width:100%;
 &>div{
     display:flex;

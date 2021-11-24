@@ -8,7 +8,7 @@ width:65px;
 height:100%;
 grid-area:tools;
 display:flex;
-box-shadow: -1px 0px 5px ${theme.colors.grey[4]};
+box-shadow: -1px 0px 5px ${theme.colors.grey[3]};
 flex-direction:column;
 align-items:center;
 `}

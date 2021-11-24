@@ -40,8 +40,8 @@ export const ToolsBar = () => {
         <Tool transparent onClick={openCalendar}>
           <FaCalendarAlt />
         </Tool>
-        <Calendar calendarOpen={calendarOpen} closeCalendar={closeCalendar} />
       </Tooltip>
+      <Calendar calendarOpen={calendarOpen} closeCalendar={closeCalendar} />
     </ToolsBarWrapper>
   );
 };

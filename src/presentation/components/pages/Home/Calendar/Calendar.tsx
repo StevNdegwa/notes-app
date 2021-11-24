@@ -14,20 +14,30 @@ export interface CalendarProps {
   calendarOpen: boolean;
 }
 
-export const Calendar: FC<CalendarProps> = ({ closeCalendar, calendarOpen }) => {
+const nextLabel = (
+  <Button transparent>
+    <FaAngleRight />
+  </Button>
+);
+const next2Label = (
+  <Button transparent>
+    <FaAngleDoubleRight />
+  </Button>
+);
 
-  const nextLabel = <Button transparent><FaAngleRight/></Button>;
-  const next2Label = (
-    <Button transparent>
-      <FaAngleDoubleRight />
-    </Button>
-  );
-  const prevLabel = <Button transparent><FaAngleLeft/></Button>;
-  const prev2Label = (
-    <Button transparent>
-      <FaAngleDoubleLeft />
-    </Button>
-  );
+const prevLabel = (
+  <Button transparent>
+    <FaAngleLeft />
+  </Button>
+);
+
+const prev2Label = (
+  <Button transparent>
+    <FaAngleDoubleLeft />
+  </Button>
+);
+
+export const Calendar: FC<CalendarProps> = ({ closeCalendar, calendarOpen }) => {
 
   return (
     <Modal isOpen={calendarOpen} closeModal={closeCalendar}>

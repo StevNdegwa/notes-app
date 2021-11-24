@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC, useCallback, useEffect, useMemo } from "react";
 import { FaTimes } from "react-icons/fa";
 import { createPortal } from "react-dom";
 import { popVariant } from "./framer";
@@ -28,6 +28,23 @@ export const Modal: FC<ModalProps> = ({
       };
     }
   }, [element, isFullScreen]);
+
+  const closeByEscape = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.code === "Escape") {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("keydown", closeByEscape);
+    } else {
+      document.removeEventListener("keydown", closeByEscape);
+    }
+  }, [isOpen, closeByEscape]);
 
   if (!isFullScreen) {
     return (
