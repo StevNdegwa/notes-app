@@ -52,6 +52,7 @@ export function NewSelect<OptionType>({
           name={name}
           value={value ? value[labelKey] : ""}
           readOnly
+          invalid={errors[name]}
         />
         <SelectIcon variants={openVariants.icon}>
           <FaAngleDown />

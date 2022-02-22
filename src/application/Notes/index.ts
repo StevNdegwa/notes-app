@@ -41,4 +41,10 @@ export class Notes {
     async deleteNote(note: NotesDataType) {
         return this.db.table("note").where("id").equals(note.id!).delete();
     }
+
+    async deleteWorkspaceNotes(workspace: string) {
+        return this.db.table("note").where({
+            workspace
+        }).delete();
+    }
 }

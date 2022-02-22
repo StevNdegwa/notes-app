@@ -5,6 +5,7 @@ import { AppSettingsMenu } from "./AppSettingsMenu";
 import { UserProfile } from "./UserProfile";
 import { DataBackup } from "./DataBackup";
 import { DataImport } from "./DataImport";
+import { ManageWorkSpaces } from "./ManageWorkSpaces";
 import { AppSettingsEB } from "./AppSettingsEB";
 
 export enum AppSettingsSections {
@@ -12,6 +13,7 @@ export enum AppSettingsSections {
   USER_PROFILE,
   BACKUP_DATA,
   IMPORT_DATA,
+  MANAGE_WORKSPACES,
 }
 
 export const AppSettings = () => {
@@ -45,6 +47,12 @@ export const AppSettings = () => {
           return (
             <SectionsLayout backToMenu={openMenu}>
               <DataImport />
+            </SectionsLayout>
+          );
+        case AppSettingsSections.MANAGE_WORKSPACES:
+          return (
+            <SectionsLayout backToMenu={openMenu}>
+              <ManageWorkSpaces />
             </SectionsLayout>
           );
         default:

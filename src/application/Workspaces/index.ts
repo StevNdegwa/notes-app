@@ -38,4 +38,8 @@ export class Workspaces {
     static async workSpacesList() {
         return new Database<WorkspacesDataTypes>("workspaces", { list: "++id,name,wsRef" }, 1).dataset("list").toArray();
     }
+
+    static async deleteWorkSpace(workspace: WorkspacesDataTypes) {
+        return new Database<WorkspacesDataTypes>("workspaces", { list: "++id,name,wsRef" }).dataset("list").where("id").equals(workspace.id!).delete();
+    }
 }

@@ -24,11 +24,20 @@ export const AppSettingsMenu: FC<AppSettingsMenuProps> = ({ moveTo }) => {
     [moveTo]
   );
 
+  const moveToManageWorkspaces = useCallback(
+    () => moveTo(AppSettingsSections.MANAGE_WORKSPACES),
+    [moveTo]
+  );
+
   return (
     <MenuWrapper>
       <List
         items={[
           <MenuItem label="User profile" onClick={moveToUserProfil} />,
+          <MenuItem
+            label="Manage workpaces"
+            onClick={moveToManageWorkspaces}
+          />,
           <MenuItem label="Backup application data" onClick={moveToBackup} />,
           <MenuItem label="Import application data" onClick={moveToImport} />,
         ]}

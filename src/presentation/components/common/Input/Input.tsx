@@ -4,13 +4,14 @@ import { InputWrapper } from "./styles";
 export interface InputProps {
   name?: string;
   onChange?: ChangeEventHandler;
+  invalid?: boolean;
   [key: string]: unknown;
 }
 
 export const Input: FC<Partial<InputProps>> = forwardRef<
   HTMLInputElement,
   Partial<InputProps>
->(({ name, onChange, ...props }, ref) => {
+>(({ name, onChange, invalid, ...props }, ref) => {
   return (
     <InputWrapper
       name={name}
@@ -18,6 +19,7 @@ export const Input: FC<Partial<InputProps>> = forwardRef<
       {...props}
       ref={ref}
       readOnly={props.readOnly as boolean}
+      invalid={invalid as boolean}
     />
   );
 });
