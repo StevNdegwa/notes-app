@@ -1,4 +1,5 @@
 import { AppSettings } from "../AppSettings";
+import { Notes } from "../Notes";
 import { defaultAppData } from "./defaultAppData";
 
 export interface NotesAppConfig {
@@ -7,9 +8,11 @@ export interface NotesAppConfig {
 
 export class Application {
     appSettings: AppSettings;
+    notes: Notes;
 
     constructor() {
         this.appSettings = new AppSettings();
+        this.notes = new Notes();
     }
 
     async install() {

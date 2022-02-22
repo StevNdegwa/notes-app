@@ -1,5 +1,6 @@
+import { IndexableType } from "dexie";
 export interface INote {
-    id?: number | string;
+    id?: IndexableType;
     created: Date;
     lastEdited: Date;
     workspace: string;

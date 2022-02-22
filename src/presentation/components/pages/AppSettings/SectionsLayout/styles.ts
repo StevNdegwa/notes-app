@@ -17,4 +17,5 @@ height:40px;
 export const SectionsLayoutMain = styled(motion.main)`
 width:100%;
 height:calc(100% - 40px);
+padding: 1rem 2rem;
 `;

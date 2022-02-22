@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useFormContext } from "react-hook-form";
+import { FaSave } from "react-icons/fa";
 import { Button, TextInput } from "../../../../common";
 
 export const UpdateForm = () => {
@@ -18,7 +19,7 @@ export const UpdateForm = () => {
         />
       </div>
       <div style={{ margin: "1rem", height: "50px" }}>
-        <Button primary type="submit">
+        <Button primary type="submit" leftIcon={FaSave}>
           Update
         </Button>
       </div>

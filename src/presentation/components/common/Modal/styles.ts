@@ -19,6 +19,13 @@ z-index:${theme.zIndices.modal};
 `}
 `;
 
+export const ModalTitle = styled.div`
+height: 2rem;
+padding-left: 1rem;
+display: flex;
+align-items: center;
+`;
+
 export const Overlay = styled(motion.div)`
 position:absolute;
 width:100%;

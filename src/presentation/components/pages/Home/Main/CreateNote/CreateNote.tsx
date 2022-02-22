@@ -152,7 +152,7 @@ export const CreateNote: FC<CreateNoteProps> = ({
         handleClear={handleClear}
         cancelButtonLabel="Clear"
       />
-      <Modal isOpen={isOpen} closeModal={noop} isFullScreen={false}>
+      <Modal isOpen={isOpen} closeModal={noop} isFullScreen={false} title="Create a note">
         <ContinueNew>
           <Button primary onClick={closeModal} leftIcon={FaBookOpen}>
             Continue editing

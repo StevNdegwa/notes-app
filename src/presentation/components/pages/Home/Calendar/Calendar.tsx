@@ -5,6 +5,7 @@ import {
   FaAngleLeft,
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
+  FaCalendar,
 } from "react-icons/fa";
 import { Modal, Button } from "../../../common";
 import { ReactCalendarContainer } from "./styles";
@@ -37,10 +38,17 @@ const prev2Label = (
   </Button>
 );
 
-export const Calendar: FC<CalendarProps> = ({ closeCalendar, calendarOpen }) => {
-
+export const Calendar: FC<CalendarProps> = ({
+  closeCalendar,
+  calendarOpen,
+}) => {
   return (
-    <Modal isOpen={calendarOpen} closeModal={closeCalendar}>
+    <Modal
+      isOpen={calendarOpen}
+      closeModal={closeCalendar}
+      titleIcon={FaCalendar}
+      title="Calendar"
+    >
       <ReactCalendarContainer>
         <ReactCalendar
           nextLabel={nextLabel}

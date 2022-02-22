@@ -1,5 +1,6 @@
 import { FC, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
+import { FaEdit } from "react-icons/fa";
 import {
   useNotes,
   notesAtom,
@@ -27,7 +28,8 @@ export const NoteEditor: FC<NoteEditorProps> = ({
 
   const editNote = useCallback(
     (content: any) => {
-      notes?.addNote(
+      notes
+        ?.addNote(
           {
             ...note,
             lastEdited: new Date(),
@@ -37,9 +39,7 @@ export const NoteEditor: FC<NoteEditorProps> = ({
         )
         .then(() => {
           setNotes((notes) => {
-            return notes.map((n) =>
-              n.id === note.id ? { ...n, content } : n
-            );
+            return notes.map((n) => (n.id === note.id ? { ...n, content } : n));
           });
         });
     },
@@ -57,8 +57,18 @@ export const NoteEditor: FC<NoteEditorProps> = ({
     note.content
   );
 
+  const closeEditModal = useCallback(() => {
+    saveNote();
+    closeModal();
+  }, [closeModal, saveNote]);
+
   return (
-    <Modal isOpen={isOpen} closeModal={closeModal}>
+    <Modal
+      isOpen={isOpen}
+      closeModal={closeEditModal}
+      title="Edit note"
+      titleIcon={FaEdit}
+    >
       <NoteEditorWrapper>
         <ContentEditor
           id="edit_note"

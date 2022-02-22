@@ -37,4 +37,8 @@ export class Notes {
     async updateNote(noteId: number, update: Partial<NotesDataType>) {
         return this.db.table("note").update(noteId, update);
     }
+
+    async deleteNote(note: NotesDataType) {
+        return this.db.table("note").where("id").equals(note.id!).delete();
+    }
 }

@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { ThemeType } from "../../../../ui/theme";
 
+
 export const Wrapper = styled.button`
   ${({ transparent, theme, primary, secondary }: { theme: ThemeType; transparent: boolean; primary: boolean; secondary: boolean; }) => css`
   display: inline-flex;
@@ -26,9 +27,20 @@ export const Wrapper = styled.button`
     justify-content: center;
     align-items: center;
   }
+  @keyframes load { 
+    from{
+      transform: rotate(0deg)
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }
   &>div.icon{
     width: 30px;
     background-color:transparent;
+    &.spin{
+      animation:load 1s linear infinite;
+    }
   }
   height: ${theme.space[10]};
   font-weight:600;
@@ -47,7 +59,8 @@ export const Wrapper = styled.button`
     color:${theme.button.color};
   `}
   &:disabled{
-    color:${theme.colors.grey[1]}; 
+    color:${theme.colors.grey[1]};
+    cursor:not-allowed;
   }
 `}
 `;

@@ -42,7 +42,7 @@ export const CreateWorkspace = () => {
         status={workspace.status}
         successMessage={
           <>
-            Created <span style={{ fontWeight: "bold" }}>{workspace.name}</span>
+            Created <span style={{ fontWeight: "bold" }}>{workspace.name}</span>{" "}
             successfully
           </>
         }

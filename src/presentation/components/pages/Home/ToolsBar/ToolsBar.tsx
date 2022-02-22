@@ -1,6 +1,10 @@
 import { useCallback, useContext } from "react";
 
-import { FaRegMoon, FaSun, FaCalendarAlt } from "react-icons/fa";
+import {
+  FaRegMoon,
+  FaSun,
+  FaCalendarAlt,
+} from "react-icons/fa";
 import { Tooltip, TooltipPosition, useModal } from "../../../common";
 import { ThemeMode } from "../../../../../ui/theme";
 import AppContext from "../../../../../AppContext";

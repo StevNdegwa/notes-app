@@ -6,7 +6,7 @@ import {
   notesAtom,
   NotesDataType,
 } from "../../../../../../../../application";
-import { Button, useModal } from "../../../../../../common";
+import { Button, useModal, ConfirmationModal } from "../../../../../../common";
 import { NoteEditor } from "./NoteEditor";
 import { NoteToolbarWrapper } from "./styles";
 
@@ -19,9 +19,14 @@ export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
   const updateNote = useSetRecoilState(notesAtom);
   const notes = useNotes();
   const { isOpen, closeModal, openModal } = useModal();
+  const {
+    isOpen: deleteModalOpen,
+    closeModal: closeDeleteModal,
+    openModal: openDeleteModal,
+  } = useModal();
 
   const toggleStarred = useCallback(() => {
-    notes?.updateNote(id as number, { starred: !starred })
+    notes?.updateNote(id as number, { starred: !starred });
     updateNote((notes) =>
       [...notes].map((note) =>
         note.id === id ? { ...note, starred: !note.starred } : note
@@ -42,6 +47,13 @@ export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
     openModal();
   }, [openModal]);
 
+  const confirmDelete = useCallback(() => {
+    notes?.deleteNote(note).then(() => {
+      updateNote((notes) => [...notes].filter((n) => note.id !== n.id));
+    });
+    closeDeleteModal();
+  }, [closeDeleteModal, note, notes, updateNote]);
+
   return (
     <NoteToolbarWrapper>
       <Button transparent onClick={togglePinned}>
@@ -53,10 +65,21 @@ export const NoteToolbar: FC<NoteToolbarProps> = ({ note }) => {
       <Button transparent onClick={editNote}>
         <FaEdit />
       </Button>
-      <Button transparent>
+      <Button transparent onClick={openDeleteModal}>
         <FaTrash />
       </Button>
-      {isOpen && <NoteEditor modal={{ isOpen, closeModal }} note={note} />}
+      {isOpen && (
+        <NoteEditor modal={{ isOpen, closeModal, title: "" }} note={note} />
+      )}
+      {deleteModalOpen && (
+        <ConfirmationModal
+          title="Delete note"
+          mainText="Are you sure you want to delete this note?"
+          confirmAction={confirmDelete}
+          cancelAction={() => closeDeleteModal()}
+          isOpen={deleteModalOpen}
+        />
+      )}
     </NoteToolbarWrapper>
   );
 };

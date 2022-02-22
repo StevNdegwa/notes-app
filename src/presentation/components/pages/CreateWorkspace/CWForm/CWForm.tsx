@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useFormContext } from "react-hook-form";
+import { FaSave } from "react-icons/fa";
 import { TextInput, Button } from "../../../common";
 
 export const CWForm = () => {
@@ -16,7 +17,7 @@ export const CWForm = () => {
         placeholder="Workspace name.. e.g TED Talks"
       />
       <div style={{ padding: "1rem" }}>
-        <Button type="submit" primary>
+        <Button type="submit" primary leftIcon={FaSave}>
           Create
         </Button>
       </div>

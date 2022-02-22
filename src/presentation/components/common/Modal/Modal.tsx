@@ -1,13 +1,22 @@
-import { FC, useCallback, useEffect, useMemo } from "react";
+import { FC, ReactNode, useCallback, useEffect, useMemo } from "react";
 import { FaTimes } from "react-icons/fa";
+import { IconType } from "react-icons";
 import { createPortal } from "react-dom";
 import { popVariant } from "./framer";
-import { ModalWrapper, Overlay, Content, CloseModal } from "./styles";
+import {
+  ModalWrapper,
+  Overlay,
+  Content,
+  CloseModal,
+  ModalTitle,
+} from "./styles";
 
 export interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
   isFullScreen?: boolean;
+  titleIcon?: IconType;
+  title: ReactNode;
 }
 
 export const Modal: FC<ModalProps> = ({
@@ -15,6 +24,8 @@ export const Modal: FC<ModalProps> = ({
   isOpen,
   closeModal,
   isFullScreen = true,
+  title,
+  titleIcon: TitleIcon
 }) => {
   const element = useMemo(() => document.createElement("div"), []);
 
@@ -53,7 +64,13 @@ export const Modal: FC<ModalProps> = ({
         variants={popVariant.wrapper}
       >
         <Overlay variants={popVariant.overlay} onClick={closeModal}></Overlay>
-        <Content variants={popVariant.content}>{children}</Content>
+        <Content variants={popVariant.content}>
+          <ModalTitle>
+            {TitleIcon && <TitleIcon />}&nbsp;
+            {title}
+          </ModalTitle>
+          {children}
+        </Content>
       </ModalWrapper>
     );
   }
@@ -68,6 +85,10 @@ export const Modal: FC<ModalProps> = ({
         <CloseModal transparent onClick={closeModal}>
           <FaTimes />
         </CloseModal>
+        <ModalTitle>
+          {TitleIcon && <TitleIcon />}&nbsp;
+          {title}
+        </ModalTitle>
         {children}
       </Content>
     </ModalWrapper>,

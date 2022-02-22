@@ -1,4 +1,5 @@
 import { forwardRef, memo } from "react";
+import { FaCircleNotch } from "react-icons/fa";
 import { Wrapper } from "./styles";
 import { IconType } from "react-icons";
 
@@ -8,6 +9,7 @@ export interface ButtonProps {
   transparent?: boolean;
   primary?: boolean;
   secondary?: boolean;
+  loading?: boolean;
   [props: string]: any;
 }
 
@@ -20,6 +22,7 @@ const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
       transparent,
       primary,
       secondary,
+      loading,
       ...props
     },
     ref
@@ -31,6 +34,11 @@ const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
       secondary={!!secondary}
       {...props}
     >
+      {loading && (
+        <div className="icon spin">
+          <FaCircleNotch />
+        </div>
+      )}
       {LeftIcon && (
         <div className="icon">
           <LeftIcon />

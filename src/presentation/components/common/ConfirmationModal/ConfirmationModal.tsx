@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { Button } from "../Button";
 import { Modal } from "../Modal";
 import { ConfirmationModalWrapper, Header, Main, Footer } from "./styles";
@@ -23,7 +24,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   confirmAction,
 }) => {
   return (
-    <Modal isOpen={isOpen} closeModal={cancelAction}>
+    <Modal isOpen={isOpen} closeModal={cancelAction} title={""}>
       <ConfirmationModalWrapper>
         <Header>
           <div>{title}</div>
@@ -32,10 +33,10 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
         <Footer>
           <div></div>
           <div>
-            <Button onClick={cancelAction}>
+            <Button onClick={cancelAction} leftIcon={FaTimesCircle}>
               {cancelButtonText || "Cancel"}
             </Button>
-            <Button primary onClick={confirmAction}>
+            <Button primary onClick={confirmAction} leftIcon={FaCheckCircle}>
               {confirmButtonText || "Confirm"}
             </Button>
           </div>

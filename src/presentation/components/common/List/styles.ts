@@ -16,8 +16,8 @@ padding:${theme.space[1]};
     background-color:transparent;
     transition:background-color 100ms;
     &:hover{
-        background-color:${theme.colors.grey[1]};
-        box-shadow:0px 0px 2px ${theme.colors.grey[2]};
+        background-color:${theme.colors.grey[0]};
+        box-shadow:0px 0px 2px ${theme.colors.grey[1]};
     }
 }
 `};
