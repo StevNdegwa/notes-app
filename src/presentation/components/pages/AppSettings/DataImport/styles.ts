@@ -27,7 +27,7 @@ position:relative;
 }
 `;
 
-export const ProceedDataImport = styled.div`
+export const DataImportActions = styled.div`
 width:100%;
 height: 3.5rem;
 margin-top: 3rem;

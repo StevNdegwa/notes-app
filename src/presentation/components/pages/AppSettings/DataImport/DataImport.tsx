@@ -1,16 +1,22 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { FaDesktop, FaGoogleDrive, FaAngleDoubleRight } from "react-icons/fa";
+import {
+  FaDesktop,
+  FaGoogleDrive,
+  FaAngleDoubleRight,
+  FaRedoAlt,
+} from "react-icons/fa";
 import { Button } from "../../../common";
 import { loadDBs } from "./useImport";
 import {
   DataImportWrapper,
   LocalDataImport,
-  ProceedDataImport,
+  DataImportActions,
 } from "./styles";
 
 export const DataImport = () => {
   const [dataImported, setDataImported] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   const handleChange = useCallback((change: ChangeEvent<HTMLInputElement>) => {
     try {
@@ -26,7 +32,14 @@ export const DataImport = () => {
     }
   }, []);
 
-  const handleLoadFile = useCallback(() => file && loadDBs(file), [file]);
+  const handleLoadFile = useCallback(() => {
+    file &&
+      loadDBs(file).then(() => {
+        setDataLoaded(true);
+      });
+  }, [file]);
+
+  const reloadApp = useCallback(() => window.location.reload(), []);
 
   return (
     <>
@@ -41,11 +54,11 @@ export const DataImport = () => {
           Google drive
         </Button>
       </DataImportWrapper>
-      {dataImported && (
-        <ProceedDataImport>
+      {dataImported && !dataLoaded && (
+        <DataImportActions>
           <p>
-            New application data has been imported. Moving forward with this action will replace the current data with
-            the new one.
+            New application data has been imported. Moving forward with this
+            action will replace the current data with the new one.
           </p>
           <Button
             primary
@@ -54,7 +67,15 @@ export const DataImport = () => {
           >
             Proceed
           </Button>
-        </ProceedDataImport>
+        </DataImportActions>
+      )}
+      {dataLoaded && (
+        <DataImportActions>
+          <p>To complete the data restore, reload the application</p>
+          <Button transparent primary onClick={reloadApp} leftIcon={FaRedoAlt}>
+            Refresh
+          </Button>
+        </DataImportActions>
       )}
     </>
   );
