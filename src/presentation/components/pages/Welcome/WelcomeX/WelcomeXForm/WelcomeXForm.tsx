@@ -15,7 +15,10 @@ export const WelcomeXForm: FC<WelcomeXFormProps> = ({
 }) => {
   let [error, setError] = useState<Error | null>(null);
 
-  const { control, formState:{ errors } } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   useEffect(() => {
     Workspaces.workSpacesList()
@@ -41,7 +44,12 @@ export const WelcomeXForm: FC<WelcomeXFormProps> = ({
           required: { value: true, message: "Select a workspace" },
         }}
       />
-      <Button type="submit" transparent style={{marginLeft:"0.5rem"}}>
+      <Button
+        type="submit"
+        transparent
+        style={{ marginLeft: "0.5rem" }}
+        data-testid="sign-in-btn"
+      >
         <FaSignInAlt />
       </Button>
     </div>

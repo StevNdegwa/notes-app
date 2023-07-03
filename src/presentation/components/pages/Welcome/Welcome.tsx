@@ -19,15 +19,18 @@ export const Welcome: FC = () => {
   let application = useContext(AppContext);
 
   return (
-    <WelcomeWrapper loginOpen={loginOpen}>
-      <WelcomeAside>
+    <WelcomeWrapper loginOpen={loginOpen} data-testid="landing-page-wrapper">
+      <WelcomeAside data-testid="landing-page-ads-section">
         <WelcomeAds />
-        <MoveToLogin onClick={() => setLoginOpen(true)}>
+        <MoveToLogin
+          onClick={() => setLoginOpen(true)}
+          data-testid="move-to-login-btn"
+        >
           <FaChevronCircleRight />
           <div role="note">Skip to login</div>
         </MoveToLogin>
       </WelcomeAside>
-      <WelcomeMainSection>
+      <WelcomeMainSection data-testid="landing-page-controls-section">
         <WelcomeX userName={application.appData.userProfile.name} />
       </WelcomeMainSection>
     </WelcomeWrapper>

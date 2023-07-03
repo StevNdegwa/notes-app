@@ -29,6 +29,7 @@ function F<DataType>(
         onSubmit={methods.handleSubmit(handleSubmit)}
         ref={ref}
         className={className}
+        data-testid="form"
       >
         <fieldset>
           <legend>{legend}</legend>

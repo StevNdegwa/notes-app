@@ -38,7 +38,12 @@ export const AppOptions: FC = () => {
 
   return (
     <>
-      <Button transparent onClick={toggleOpen} ref={btnRef}>
+      <Button
+        transparent
+        onClick={toggleOpen}
+        ref={btnRef}
+        data-testid="app-options-control-btn"
+      >
         <FaEllipsisV />
       </Button>
       <AppOptionsWrapper
@@ -46,6 +51,7 @@ export const AppOptions: FC = () => {
         animate={open ? "visible" : "hidden"}
         variants={variants}
         ref={wrapperRef}
+        data-testid="app-options-container"
       >
         <List
           items={[<Link to="/application-settings">Application Settings</Link>]}

@@ -39,7 +39,7 @@ cursor:pointer;
     padding:0 1rem;
     font-weight:600;
 }
-@media only screen and (min-width:1024px){
+@media only screen and (min-width:1025px){
     display:none;
 }
 ${({ theme }: { theme: ThemeType; }) => css`
@@ -59,6 +59,7 @@ ${({ loginOpen }: { loginOpen: boolean; }) => loginOpen && css`
     ${WelcomeAside}{
         @media only screen and (max-width:1024px){
             width:0px;
+            display:none;
         }
     }
     ${WelcomeMainSection}{

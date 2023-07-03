@@ -45,7 +45,10 @@ export function NewSelect<OptionType>({
       });
 
     return (
-      <SelectWrapper animate={isOpen ? "open" : "close"}>
+      <SelectWrapper
+        animate={isOpen ? "open" : "close"}
+        data-testid="new-select"
+      >
         <Input
           {...getToggleButtonProps()}
           placeholder={placeholder}
@@ -53,6 +56,7 @@ export function NewSelect<OptionType>({
           value={value ? value[labelKey] : ""}
           readOnly
           invalid={errors[name]}
+          data-testid="new-select-input-field"
         />
         <SelectIcon variants={openVariants.icon}>
           <FaAngleDown />
@@ -61,6 +65,7 @@ export function NewSelect<OptionType>({
           variants={openVariants.menu}
           {...getMenuProps()}
           initial={false}
+          data-testid="new-select-options-list"
         >
           {options.map((option: OptionType, index: number) => (
             <li key={index} {...getItemProps({ item: option, index })}>

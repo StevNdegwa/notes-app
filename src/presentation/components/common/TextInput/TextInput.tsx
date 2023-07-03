@@ -30,6 +30,7 @@ const TI = forwardRef<HTMLInputElement, Partial<TextInputProps>>(
           onChange={onChange}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
+          data-testid="text-input"
         />
       </Wrapper>
     );

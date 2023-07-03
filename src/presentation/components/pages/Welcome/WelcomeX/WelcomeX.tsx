@@ -45,7 +45,7 @@ export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
   };
 
   if (login) {
-    return <Redirect to="/home" exact />;
+    return <Redirect to="/home" exact push />;
   }
 
   return (
@@ -83,7 +83,7 @@ export const WelcomeX: FC<WelcomeXProps> = ({ userName }) => {
               setWorkSpaces={setWorkSpaces}
             />
           </Form>
-          <Link to="/create-workspace">
+          <Link to="/create-workspace" data-testid="create-new-workspace-link">
             <Button className="create-new-workspace-btn" transparent>
               Create a new workspace
             </Button>

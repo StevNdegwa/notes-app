@@ -14,7 +14,7 @@ export const AppLayout: FC = ({ children }) => {
   return (
     <AppLayoutWrapper>
       <AppLayoutHeader>
-        <Link to="/?login=true">
+        <Link to="/?login=true" data-testid="to-home-link">
           <Button transparent>
             <FaHome />
           </Button>

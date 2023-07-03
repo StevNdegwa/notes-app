@@ -10,9 +10,11 @@ export const openVariants = {
     menu: {
         open: {
             height: "auto",
+            display: "block"
         },
         close: {
-            height: "0px"
+            height: "0px",
+            display: "none"
         }
     }
 }

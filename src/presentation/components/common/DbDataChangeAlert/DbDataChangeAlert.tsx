@@ -21,6 +21,7 @@ export const DbDataChangeAlert: FC<DbDataChangeAlertProps> = ({
       animate={status === FeedbackTypes.NONE ? "hidden" : "showing"}
       initial={true}
       style={{ display: "none" }}
+      data-testid="db-data-change-alert-wrapper"
     >
       <Alert feedback={status}>
         {status === FeedbackTypes.ERROR ? (
