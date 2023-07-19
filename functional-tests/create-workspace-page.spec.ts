@@ -20,14 +20,14 @@ test.describe("Create Workspace Page", () => {
       "db-data-change-alert-wrapper"
     );
 
-    expect(dbDataChangeAlertWrapper).toBeVisible();
+    await expect(dbDataChangeAlertWrapper).toBeVisible();
 
-    expect(dbDataChangeAlertWrapper).toContainText(
+    await expect(dbDataChangeAlertWrapper).toContainText(
       `Created ${sampleWsName} successfully`
     );
 
     await page.getByTestId("to-home-link").click();
 
-    expect(page).toHaveURL(LANDING_PAGE_URL + "?login=true");
+    await expect(page).toHaveURL(LANDING_PAGE_URL + "?login=true");
   });
 });

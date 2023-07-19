@@ -10,22 +10,22 @@ test.describe("Landing page test suite", () => {
   });
 
   test("has title", async ({ page }) => {
-    expect(page).toHaveTitle(/Notes App | Start taking notes/);
+    await expect(page).toHaveTitle(/Notes App | Start taking notes/);
   });
 
   test("has application settings", async ({ page }) => {
     const appOptionsControlBtn = page.getByTestId("app-options-control-btn");
 
-    expect(page.getByTestId("app-options-container")).toBeHidden();
+    await expect(page.getByTestId("app-options-container")).toBeHidden();
 
     await appOptionsControlBtn.click();
 
-    expect(page.getByTestId("app-options-container")).toBeVisible();
+    await expect(page.getByTestId("app-options-container")).toBeVisible();
   });
 
   test("can open the page to create a new workspace", async ({ page }) => {
     await page.getByTestId("create-new-workspace-link").click();
-    expect(page).toHaveURL(/.*\/create-workspace/);
+    await expect(page).toHaveURL(/.*\/create-workspace/);
   });
 
   test("lists available workspaces", async ({ page }) => {
@@ -39,24 +39,24 @@ test.describe("Landing page test suite", () => {
 
     const optionsList = newSelect.getByTestId("new-select-options-list");
 
-    expect(
+    await expect(
       optionsList,
       // eslint-disable-next-line jest/valid-expect
       "should contain workspaces list"
     ).toBeVisible();
 
-    expect(optionsList.getByText(sampleWsName)).toBeVisible();
+    await expect(optionsList.getByText(sampleWsName)).toBeVisible();
 
-    expect(optionsList).toHaveText(sampleWsName);
+    await expect(optionsList).toHaveText(sampleWsName);
 
     await createWs(page, anotherWs);
 
     await openNewSelectOptions(page);
 
-    expect(optionsList.getByText(anotherWs)).toBeVisible();
+    await expect(optionsList.getByText(anotherWs)).toBeVisible();
 
-    expect(optionsList).toContainText(sampleWsName);
-    expect(optionsList).toContainText(anotherWs);
+    await expect(optionsList).toContainText(sampleWsName);
+    await expect(optionsList).toContainText(anotherWs);
   });
 
   test("selects a workspace", async ({ page }) => {
@@ -66,11 +66,11 @@ test.describe("Landing page test suite", () => {
 
     await page.getByText(sampleWsName).click();
 
-    expect(page.getByTestId("new-select-input-field")).toHaveValue(
+    await expect(page.getByTestId("new-select-input-field")).toHaveValue(
       sampleWsName
     );
 
-    expect(page.getByTestId("new-select-options-list")).toBeHidden();
+    await expect(page.getByTestId("new-select-options-list")).toBeHidden();
   });
 
   test("logs in to the application", async ({ page }) => {
@@ -82,6 +82,6 @@ test.describe("Landing page test suite", () => {
 
     await page.getByTestId("sign-in-btn").click();
 
-    expect(page).toHaveURL("http://localhost:3000/home");
+    await expect(page).toHaveURL("http://localhost:3000/home");
   });
 });
